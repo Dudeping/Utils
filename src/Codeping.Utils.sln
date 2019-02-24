@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.WeChat", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.WeChat.Menu", "Codeping.Utils.WeChat.Menu\Codeping.Utils.WeChat.Menu.csproj", "{1FBCBA16-ECF7-44D5-9237-FC2E82116B45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.TimedJob", "Codeping.Utils.TimedJob\Codeping.Utils.TimedJob.csproj", "{61CFF106-03F8-402D-9D50-B7D6B218003C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1FBCBA16-ECF7-44D5-9237-FC2E82116B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FBCBA16-ECF7-44D5-9237-FC2E82116B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FBCBA16-ECF7-44D5-9237-FC2E82116B45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61CFF106-03F8-402D-9D50-B7D6B218003C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61CFF106-03F8-402D-9D50-B7D6B218003C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61CFF106-03F8-402D-9D50-B7D6B218003C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61CFF106-03F8-402D-9D50-B7D6B218003C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,7 +23,7 @@ namespace Codeping.Utils
 
         public static ContentResult JContent(this ControllerBase controller, OperatResult result, string successUrl, string failUrl)
         {
-            return controller.JContent(result.IsError ? result.ErrorMessage : "成功!", result.IsError ? failUrl : successUrl);
+            return controller.JContent(result.IsError ? result.ErrorMessage : "操作成功!", result.IsError ? failUrl : successUrl);
         }
     }
 }
