@@ -5,7 +5,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyModel;
 
-namespace Pomelo.AspNetCore.TimedJob.Jobs
+namespace Codeping.Utils.TimedJob
 {
     public class DefaultAssemblyLocator : IAssemblyLocator
     {

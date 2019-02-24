@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace Pomelo.AspNetCore.TimedJob.Jobs
+namespace Codeping.Utils.TimedJob
 {
     public interface IAssemblyLocator
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pomelo.AspNetCore.TimedJob
+namespace Codeping.Utils.TimedJob
 {
     public class Job
     {

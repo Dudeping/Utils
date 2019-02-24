@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Codeping.Utils.TimedJob
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class NonJobAttribute : Attribute
+    public interface IDynamicTimedJobProvider
     {
+        IList<DynamicTimedJob> GetJobs();
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Pomelo.AspNetCore.TimedJob.Jobs;
+using Codeping.Utils.TimedJob;
 
-namespace Pomelo.AspNetCore.TimedJob
+namespace Codeping.Utils.TimedJob
 {
     public class TimedJobService
     {
