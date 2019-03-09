@@ -37,7 +37,7 @@ namespace Codeping.Utils.TimedJob
 
                 InvokeAttribute invoke = method.GetCustomAttribute<InvokeAttribute>();
 
-                if (invoke != null && invoke.IsEnabled) continue;
+                if (invoke == null || !invoke.IsEnabled) continue;
 
                 TimeSpan delay = invoke.Begin - DateTime.Now;
 
