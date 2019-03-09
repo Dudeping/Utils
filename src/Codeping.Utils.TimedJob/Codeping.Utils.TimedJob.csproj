@@ -2,11 +2,37 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>codeping</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>TimedJob</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils.TimedJob</PackageProjectUrl>
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Version>1.0.0-alpha</Version>
+    <Description>一个可用于 asp.net core 的后台定时任务框架。</Description>
+    <PackageReleaseNotes>初版发布, 功能可用.</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIconUrl>https://github.com/Dudeping/Utils/tree/master/docs/icons/TimedJob.ico</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Codeping.Utils\Codeping.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

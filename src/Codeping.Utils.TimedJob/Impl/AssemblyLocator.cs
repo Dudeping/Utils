@@ -7,32 +7,32 @@ using Microsoft.Extensions.DependencyModel;
 
 namespace Codeping.Utils.TimedJob
 {
-    public class DefaultAssemblyLocator : IAssemblyLocator
+    public class AssemblyLocator : IAssemblyLocator
     {
-        private static readonly string AssemblyRoot = typeof(Job).GetTypeInfo().Assembly.GetName().Name;
+        private static readonly string AssemblyRoot = typeof(IJob).GetTypeInfo().Assembly.GetName().Name;
+
         private readonly Assembly _entryAssembly;
         private readonly DependencyContext _dependencyContext;
 
-        public DefaultAssemblyLocator(IHostingEnvironment environment)
+        public AssemblyLocator(IHostingEnvironment environment)
         {
             _entryAssembly = Assembly.Load(new AssemblyName(environment.ApplicationName));
+
             _dependencyContext = DependencyContext.Load(_entryAssembly);
         }
 
-        public virtual IList<Assembly> GetAssemblies()
+        public virtual IEnumerable<Assembly> GetAssemblies()
         {
             if (_dependencyContext == null)
             {
-                // Use the entry assembly as the sole candidate.
                 return new[] { _entryAssembly };
             }
 
             return _dependencyContext
                 .RuntimeLibraries
                 .Where(IsCandidateLibrary)
-                .SelectMany(l => l.GetDefaultAssemblyNames(_dependencyContext))
-                .Select(assembly => Assembly.Load(new AssemblyName(assembly.Name)))
-                .ToArray();
+                .SelectMany(x => x.GetDefaultAssemblyNames(_dependencyContext))
+                .Select(assembly => Assembly.Load(new AssemblyName(assembly.Name)));
         }
 
         private bool IsCandidateLibrary(RuntimeLibrary library)
