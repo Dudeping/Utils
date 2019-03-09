@@ -10,7 +10,7 @@
     <Company />
     <Copyright>Copyright © 2019</Copyright>
     <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/Dudeping/Utils/tree/master/docs/icons/utils.ico</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/Utils.ico</PackageIconUrl>
     <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>utils</PackageTags>

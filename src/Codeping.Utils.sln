@@ -1,19 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28705.295
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils", "Codeping.Utils\Codeping.Utils.csproj", "{38AFDBFF-E9F2-49AF-90FD-6F62F8730865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.Xml", "Codeping.Utils.Xml\Codeping.Utils.Xml.csproj", "{615EA1EA-F8FE-4B90-87C5-87320A750C12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.Xml", "Codeping.Utils.Xml\Codeping.Utils.Xml.csproj", "{615EA1EA-F8FE-4B90-87C5-87320A750C12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.Json", "Codeping.Utils.Json\Codeping.Utils.Json.csproj", "{0562CA4C-9210-4717-BD12-EE6EB107CD72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.Json", "Codeping.Utils.Json\Codeping.Utils.Json.csproj", "{0562CA4C-9210-4717-BD12-EE6EB107CD72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.WeChat", "Codeping.Utils.WeChat\Codeping.Utils.WeChat.csproj", "{641A8FA1-83A9-4CF6-BA5E-75256CD19956}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.WeChat", "Codeping.Utils.WeChat\Codeping.Utils.WeChat.csproj", "{641A8FA1-83A9-4CF6-BA5E-75256CD19956}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.WeChat.Menu", "Codeping.Utils.WeChat.Menu\Codeping.Utils.WeChat.Menu.csproj", "{1FBCBA16-ECF7-44D5-9237-FC2E82116B45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.WeChat.Menu", "Codeping.Utils.WeChat.Menu\Codeping.Utils.WeChat.Menu.csproj", "{1FBCBA16-ECF7-44D5-9237-FC2E82116B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.TimedJob", "Codeping.Utils.TimedJob\Codeping.Utils.TimedJob.csproj", "{61CFF106-03F8-402D-9D50-B7D6B218003C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.TimedJob", "Codeping.Utils.TimedJob\Codeping.Utils.TimedJob.csproj", "{61CFF106-03F8-402D-9D50-B7D6B218003C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.Silly", "Codeping.Utils.Silly\Codeping.Utils.Silly.csproj", "{46046FD6-CFD0-41F4-AF84-1841D6AF7E47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{61CFF106-03F8-402D-9D50-B7D6B218003C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61CFF106-03F8-402D-9D50-B7D6B218003C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61CFF106-03F8-402D-9D50-B7D6B218003C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46046FD6-CFD0-41F4-AF84-1841D6AF7E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46046FD6-CFD0-41F4-AF84-1841D6AF7E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46046FD6-CFD0-41F4-AF84-1841D6AF7E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46046FD6-CFD0-41F4-AF84-1841D6AF7E47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

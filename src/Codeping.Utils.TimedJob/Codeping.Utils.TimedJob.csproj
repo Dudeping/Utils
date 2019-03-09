@@ -15,7 +15,7 @@
     <Description>一个可用于 asp.net core 的后台定时任务框架。</Description>
     <PackageReleaseNotes>初版发布, 功能可用.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIconUrl>https://github.com/Dudeping/Utils/tree/master/docs/icons/TimedJob.ico</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/TimedJob.ico</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
