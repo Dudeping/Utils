@@ -1,7 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>codeping</Authors>
+    <Version>1.0.0-alpha</Version>
+    <Description>一个为微信开发编写的扩展包。</Description>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils.TimedJob</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageIconUrl>https://github.com/Dudeping/Utils/tree/master/docs/icons/wechat.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>wechat</PackageTags>
+    <PackageReleaseNotes>添加了权限过滤器。</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
+    <PackageReference Include="Senparc.Weixin.MP" Version="16.6.14.2" />
+  </ItemGroup>
 
 </Project>
