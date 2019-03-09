@@ -2,6 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.0-alpha</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>codeping</Authors>
+    <Company />
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/Dudeping/Utils/tree/master/docs/icons/utils.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>utils</PackageTags>
+    <Description>一个为 dotnet 开发编写的基础包。</Description>
+    <PackageReleaseNotes>添加了大量基础库。</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +24,13 @@
 
   <ItemGroup>
     <Folder Include="Excel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
