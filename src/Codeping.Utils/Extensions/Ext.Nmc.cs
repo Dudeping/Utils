@@ -76,7 +76,7 @@ namespace Codeping.Utils
         /// <param name="client">客户端</param>
         /// <param name="domain">当前域</param>
         /// <returns></returns>
-        public static IEnumerable<NmcModel> RequestForecast(this HttpClient client, string domain)
+        public static NmcModel RequestForecast(this HttpClient client, string domain)
         {
             var html = client.GetStringAsync(_forecast).Result;
 
@@ -115,7 +115,7 @@ namespace Codeping.Utils
 
             var label = forecast.ToJson();
 
-            yield return new NmcModel
+            return new NmcModel
             {
                 Label = label,
                 DateTime = DateTime.Now,

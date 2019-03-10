@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -30,30 +29,6 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Md5 加密
-        /// </summary>
-        private static string Md5(this string value, Encoding encoding, int? startIndex, int? length)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return string.Empty;
-            }
-
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            string result;
-            try
-            {
-                byte[] hash = md5.ComputeHash(encoding.GetBytes(value));
-                result = startIndex == null ? BitConverter.ToString(hash) : BitConverter.ToString(hash, startIndex.SafeValue(), length.SafeValue());
-            }
-            finally
-            {
-                md5.Clear();
-            }
-            return result.Replace("-", "");
-        }
-
-        /// <summary>
         /// Md5 加密，返回 32 位结果
         /// </summary>
         /// <param name="value">值</param>
@@ -69,7 +44,34 @@ namespace Codeping.Utils
         /// <param name="encoding">字符编码</param>
         public static string Md5By32(this string value, Encoding encoding)
         {
-            return value.Md5(encoding, null, null);
+            return value.Md5(encoding);
+        }
+
+        /// <summary>
+        /// Md5 加密
+        /// </summary>
+        private static string Md5(this string value, Encoding encoding, int startIndex = 0, int? length = null)
+        {
+            if (value.IsEmpty())
+            {
+                return string.Empty;
+            }
+
+            string result;
+            var md5 = new MD5CryptoServiceProvider();
+
+            try
+            {
+                byte[] hash = md5.ComputeHash(encoding.GetBytes(value));
+
+                result = length == null ? BitConverter.ToString(hash, startIndex) : BitConverter.ToString(hash, startIndex, length.SafeValue());
+            }
+            finally
+            {
+                md5.Clear();
+            }
+
+            return result.Replace("-", "");
         }
     }
 }
