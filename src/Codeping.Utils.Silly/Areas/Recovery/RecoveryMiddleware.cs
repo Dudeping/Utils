@@ -16,12 +16,16 @@ namespace Codeping.Utils.Silly.Areas.Recovery
 
         public Task Invoke(HttpContext httpContext)
         {
-            if (IsEnable)
+            if (IsEnable && httpContext.Request.Path != "/Recovery/Index")
             {
                 httpContext.Response.Redirect("/Recovery/Index");
-            }
 
-            return _next(httpContext);
+                return Task.CompletedTask;
+            }
+            else
+            {
+                return _next(httpContext);
+            }
         }
     }
 
