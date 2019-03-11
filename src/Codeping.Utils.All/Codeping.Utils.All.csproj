@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -13,8 +13,8 @@
     <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>utils</PackageTags>
-    <PackageReleaseNotes>第一次整合。</PackageReleaseNotes>
-    <Version>1.0.0-alpha</Version>
+    <PackageReleaseNotes>版本更新。</PackageReleaseNotes>
+    <Version>1.0.1-alpha</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,10 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Codeping.Utils" Version="1.0.2-alpha" />
+    <PackageReference Include="Codeping.Utils" Version="1.0.3-alpha" />
     <PackageReference Include="Codeping.Utils.TimedJob" Version="1.0.1-alpha" />
     <PackageReference Include="Codeping.Utils.WeChat" Version="1.0.0-alpha" />
-    <PackageReference Include="Dep.First.NuGet" Version="2.0.0-alpha" />
+    <PackageReference Include="Dep.First.NuGet" Version="2.0.3-alpha" />
   </ItemGroup>
 
 </Project>
