@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,12 +10,11 @@
     <Description>一个有趣的项目，不浪费 ID。</Description>
     <Copyright>Copyright © 2019</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>2.0.2-alpha</Version>
-    <PackageReleaseNotes>添加尾款追讨界面。</PackageReleaseNotes>
+    <Version>2.0.3-alpha</Version>
+    <PackageReleaseNotes>修复尾款追讨。</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Codeping.Utils" Version="1.0.2-alpha" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 
@@ -24,5 +23,9 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Codeping.Utils\Codeping.Utils.csproj" />
   </ItemGroup>
 </Project>
