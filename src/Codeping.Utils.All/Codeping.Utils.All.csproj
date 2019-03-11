@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>utils</PackageTags>
     <PackageReleaseNotes>版本更新。</PackageReleaseNotes>
-    <Version>1.0.1-alpha</Version>
+    <Version>1.0.2-alpha</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,10 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Codeping.Utils" Version="1.0.3-alpha" />
-    <PackageReference Include="Codeping.Utils.TimedJob" Version="1.0.1-alpha" />
-    <PackageReference Include="Codeping.Utils.WeChat" Version="1.0.0-alpha" />
-    <PackageReference Include="Dep.First.NuGet" Version="2.0.3-alpha" />
+    <ProjectReference Include="..\Codeping.Utils.Silly\Codeping.Utils.Silly.csproj" />
+    <ProjectReference Include="..\Codeping.Utils.TimedJob\Codeping.Utils.TimedJob.csproj" />
+    <ProjectReference Include="..\Codeping.Utils.WeChat\Codeping.Utils.WeChat.csproj" />
+    <ProjectReference Include="..\Codeping.Utils\Codeping.Utils.csproj" />
   </ItemGroup>
 
 </Project>
