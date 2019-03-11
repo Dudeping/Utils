@@ -12,7 +12,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/Utils.ico</PackageIconUrl>
     <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>utils codeping</PackageTags>
+    <PackageTags>utils</PackageTags>
     <PackageReleaseNotes>第一次整合。</PackageReleaseNotes>
     <Version>1.0.0-alpha</Version>
   </PropertyGroup>
