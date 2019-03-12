@@ -15,6 +15,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>wechat</PackageTags>
     <PackageReleaseNotes>引用项变更。</PackageReleaseNotes>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

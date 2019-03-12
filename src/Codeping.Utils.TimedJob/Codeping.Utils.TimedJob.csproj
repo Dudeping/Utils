@@ -16,6 +16,7 @@
     <PackageReleaseNotes>初版发布, 功能可用.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/TimedJob.ico</PackageIconUrl>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

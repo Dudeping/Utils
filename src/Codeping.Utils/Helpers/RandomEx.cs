@@ -12,6 +12,14 @@ namespace Codeping.Utils
         private static readonly Random _rnd = new Random(Environment.TickCount);
 
         /// <summary>
+        /// 生成 Guid
+        /// </summary>
+        public static string GenerateGuid()
+        {
+            return Guid.NewGuid().ToString("N");
+        }
+
+        /// <summary>
         /// 生成随机长度字符串
         /// </summary>
         /// <param name="maxLength">最大长度</param>

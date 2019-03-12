@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -15,7 +16,7 @@ namespace Codeping.Utils
     public static partial class Ext
     {
         /// <summary>
-        /// 获取Ip
+        /// 获取 Ip
         /// </summary>
         public static string GetIp(this HttpContext context)
         {
@@ -27,6 +28,45 @@ namespace Codeping.Utils
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 保存文件
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="name">文件提交表单项名</param>
+        /// <param name="rootDir">保存的根路径</param>
+        /// <returns></returns>
+        public static string SaveFileTo(this HttpRequest request, string name, string rootDir)
+        {
+            var file = request.Form.Files.GetFile(name);
+
+            if (file == null)
+            {
+                return "";
+            }
+
+            string fileExt = Path.GetExtension(file.FileName);
+
+            string fileName = RandomEx.GenerateGuid() + fileExt;
+
+            var relativePath = "/upload/" + fileName;
+
+            var filePath = rootDir + relativePath;
+
+            var directory = Path.GetDirectoryName(filePath);
+
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                file.CopyTo(stream);
+            }
+
+            return relativePath;
         }
 
         /// <summary>

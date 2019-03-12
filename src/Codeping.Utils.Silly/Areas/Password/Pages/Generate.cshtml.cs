@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Codeping.Utils.Silly.Areas.Password.Pages
+namespace Codeping.Utils.Silly.Password.Pages
 {
     public class GenerateModel : PageModel
     {
-        [DisplayName("ÃÜÎÄ")]
+        [DisplayName("å¯†æ–‡")]
         public string Password { get; set; }
 
         [BindProperty]
-        [DisplayName("Ã÷ÎÄ")]
+        [DisplayName("æ˜Žæ–‡")]
         public string Text { get; set; }
 
         public IActionResult OnPost()
