@@ -11,12 +11,13 @@
     <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils.TimedJob</PackageProjectUrl>
     <Copyright>Copyright © 2019</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
-    <Version>1.0.2-alpha</Version>
-    <Description>一个可用于 asp.net core 的后台定时任务框架。</Description>
+    <Version>0.0.1-alpha</Version>
+    <Description>该项目用于快速开发简单的 asp.net core 的后台定时任务。</Description>
     <PackageReleaseNotes>初版发布, 功能可用.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/TimedJob.ico</PackageIconUrl>
     <LangVersion>7.3</LangVersion>
+    <PackageLicenseUrl>https://github.com/Dudeping/Utils/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
