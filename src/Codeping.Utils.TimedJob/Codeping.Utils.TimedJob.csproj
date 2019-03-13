@@ -17,7 +17,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/TimedJob.ico</PackageIconUrl>
     <LangVersion>7.3</LangVersion>
-    <PackageLicenseUrl>https://github.com/Dudeping/Utils/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

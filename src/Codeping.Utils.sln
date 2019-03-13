@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28705.295
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils", "Codeping.Utils\Codeping.Utils.csproj", "{38AFDBFF-E9F2-49AF-90FD-6F62F8730865}"
 EndProject
@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.TimedJob", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.Silly", "Codeping.Utils.Silly\Codeping.Utils.Silly.csproj", "{46046FD6-CFD0-41F4-AF84-1841D6AF7E47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.All", "Codeping.Utils.All\Codeping.Utils.All.csproj", "{89D16248-26A8-4609-9587-8777BE6F3519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.All", "Codeping.Utils.All\Codeping.Utils.All.csproj", "{89D16248-26A8-4609-9587-8777BE6F3519}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Units", "Units", "{0EA7C8B6-1EE6-4EBD-A24E-1D7F06A7AC10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimedJobTests", "TimedJobTests\TimedJobTests.csproj", "{2C293F18-BFDD-4AD0-8448-F7BFDED7F4A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,9 +61,16 @@ Global
 		{89D16248-26A8-4609-9587-8777BE6F3519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D16248-26A8-4609-9587-8777BE6F3519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89D16248-26A8-4609-9587-8777BE6F3519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C293F18-BFDD-4AD0-8448-F7BFDED7F4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C293F18-BFDD-4AD0-8448-F7BFDED7F4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C293F18-BFDD-4AD0-8448-F7BFDED7F4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C293F18-BFDD-4AD0-8448-F7BFDED7F4A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C293F18-BFDD-4AD0-8448-F7BFDED7F4A4} = {0EA7C8B6-1EE6-4EBD-A24E-1D7F06A7AC10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {03B68A18-69DF-48F2-A48B-C84747BE7367}
