@@ -10,9 +10,9 @@ namespace Codeping.Utils
     public static partial class Ext
     {
         /// <summary>
-        /// 获取汉字的拼音简码，即首字母缩写,范例：中国,返回zg
+        /// 获取汉字的拼音简码, 即首字母缩写, 范例：中国, 返回 zg
         /// </summary>
-        /// <param name="chineseText">汉字文本,范例： 中国</param>
+        /// <param name="chineseText">汉字文本, 范例： 中国</param>
         public static string PinYin(this string chineseText)
         {
             if (string.IsNullOrWhiteSpace(chineseText))
@@ -23,10 +23,63 @@ namespace Codeping.Utils
             StringBuilder result = new StringBuilder();
             foreach (char text in chineseText)
             {
-                result.AppendFormat("{0}", ResolvePinYin(text));
+                result.AppendFormat("{0}", text.ResolvePinYin());
             }
 
             return result.ToString().ToLower();
+        }
+
+        /// <summary>
+        /// 首字母小写
+        /// </summary>
+        /// <param name="value">值</param>
+        public static string FirstLowerCase(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return string.Empty;
+            }
+
+            return $"{value.Substring(0, 1).ToLower()}{value.Substring(1)}";
+        }
+
+        /// <summary>
+        /// 首字母大写
+        /// </summary>
+        /// <param name="value">值</param>
+        public static string FirstUpperCase(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return string.Empty;
+            }
+
+            return $"{value.Substring(0, 1).ToUpper()}{value.Substring(1)}";
+        }
+
+        /// <summary>
+        /// 移除末尾字符串
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="removeValue">要移除的值</param>
+        public static string RemoveEnd(this string value, string removeValue)
+        {
+            if (value.IsEmpty())
+            {
+                return string.Empty;
+            }
+
+            if (removeValue.IsEmpty())
+            {
+                return value.SafeString();
+            }
+
+            if (value.ToLower().EndsWith(removeValue.ToLower()))
+            {
+                return value.Remove(value.Length - removeValue.Length, removeValue.Length);
+            }
+
+            return value;
         }
 
         /// <summary>
@@ -34,20 +87,22 @@ namespace Codeping.Utils
         /// </summary>
         private static string ResolvePinYin(this char text)
         {
-            byte[] charBytes = Encoding.UTF8.GetBytes(text.ToString());
+            var txt = text.SafeString();
+
+            byte[] charBytes = Encoding.UTF8.GetBytes(txt);
             if (charBytes[0] <= 127)
             {
-                return text.ToString();
+                return txt;
             }
 
             ushort unicode = (ushort)(charBytes[0] * 256 + charBytes[1]);
-            string pinYin = ResolveByCode(unicode);
-            if (!string.IsNullOrWhiteSpace(pinYin))
+            string pinYin = unicode.ResolveByCode();
+            if (!pinYin.IsEmpty())
             {
                 return pinYin;
             }
 
-            return ResolveByConst(text.ToString());
+            return txt.ResolveByConst();
         }
 
         /// <summary>
@@ -185,59 +240,6 @@ namespace Codeping.Utils
             }
 
             return Const.ChinesePinYin.Substring(index + 1, 1);
-        }
-
-        /// <summary>
-        /// 首字母小写
-        /// </summary>
-        /// <param name="value">值</param>
-        public static string FirstLowerCase(this string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return string.Empty;
-            }
-
-            return $"{value.Substring(0, 1).ToLower()}{value.Substring(1)}";
-        }
-
-        /// <summary>
-        /// 首字母大写
-        /// </summary>
-        /// <param name="value">值</param>
-        public static string FirstUpperCase(this string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return string.Empty;
-            }
-
-            return $"{value.Substring(0, 1).ToUpper()}{value.Substring(1)}";
-        }
-
-        /// <summary>
-        /// 移除末尾字符串
-        /// </summary>
-        /// <param name="value">值</param>
-        /// <param name="removeValue">要移除的值</param>
-        public static string RemoveEnd(this string value, string removeValue)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return string.Empty;
-            }
-
-            if (string.IsNullOrWhiteSpace(removeValue))
-            {
-                return value.SafeString();
-            }
-
-            if (value.ToLower().EndsWith(removeValue.ToLower()))
-            {
-                return value.Remove(value.Length - removeValue.Length, removeValue.Length);
-            }
-
-            return value;
         }
     }
 }

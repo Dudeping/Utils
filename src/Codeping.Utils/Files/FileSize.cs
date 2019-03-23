@@ -40,7 +40,7 @@
         public long Size => _size;
 
         /// <summary>
-        /// 获取文件大小，单位：字节
+        /// 获取文件大小, 单位：字节
         /// </summary>
         public int GetSize()
         {
@@ -48,7 +48,7 @@
         }
 
         /// <summary>
-        /// 获取文件大小，单位：K
+        /// 获取文件大小, 单位：K
         /// </summary>
         public double GetSizeByK()
         {
@@ -56,7 +56,7 @@
         }
 
         /// <summary>
-        /// 获取文件大小，单位：M
+        /// 获取文件大小, 单位：M
         /// </summary>
         public double GetSizeByM()
         {
@@ -64,7 +64,7 @@
         }
 
         /// <summary>
-        /// 获取文件大小，单位：G
+        /// 获取文件大小, 单位：G
         /// </summary>
         public double GetSizeByG()
         {

@@ -10,9 +10,9 @@ namespace Codeping.Utils
     public static partial class Encrypt
     {
         /// <summary>
-        /// DES密钥,24位字符串
+        /// DES密钥, 24位字符串
         /// </summary>
-        public static string DesKey = "#s^un2ye21fcv%|f0XpR,+vh";
+        public static string DesKey = "#s^un2ye21fcv%|f0XpR, +vh";
 
         /// <summary>
         /// DES加密
@@ -27,7 +27,7 @@ namespace Codeping.Utils
         /// DES加密
         /// </summary>
         /// <param name="value">待加密的值</param>
-        /// <param name="key">密钥,24位</param>
+        /// <param name="key">密钥, 24位</param>
         public static string DesEncrypt(object value, string key)
         {
             return DesEncrypt(value, key, Encoding.UTF8);
@@ -37,7 +37,7 @@ namespace Codeping.Utils
         /// DES加密
         /// </summary>
         /// <param name="value">待加密的值</param>
-        /// <param name="key">密钥,24位</param>
+        /// <param name="key">密钥, 24位</param>
         /// <param name="encoding">编码</param>
         public static string DesEncrypt(object value, string key, Encoding encoding)
         {
@@ -97,7 +97,7 @@ namespace Codeping.Utils
         /// DES解密
         /// </summary>
         /// <param name="value">加密后的值</param>
-        /// <param name="key">密钥,24位</param>
+        /// <param name="key">密钥, 24位</param>
         public static string DesDecrypt(object value, string key)
         {
             return DesDecrypt(value, key, Encoding.UTF8);
@@ -107,7 +107,7 @@ namespace Codeping.Utils
         /// DES解密
         /// </summary>
         /// <param name="value">加密后的值</param>
-        /// <param name="key">密钥,24位</param>
+        /// <param name="key">密钥, 24位</param>
         /// <param name="encoding">编码</param>
         public static string DesDecrypt(object value, string key, Encoding encoding)
         {

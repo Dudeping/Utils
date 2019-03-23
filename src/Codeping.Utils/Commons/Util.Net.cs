@@ -9,9 +9,9 @@ using System.Text;
 namespace Codeping.Utils
 {
     /// <summary>
-    /// IP 转地址
+    /// 常用类库 - IP 转地址
     /// </summary>
-    public static class Net
+    public static partial class Util
     {
         public static string GetLocation(string ip)
         {
@@ -20,7 +20,7 @@ namespace Codeping.Utils
             try
             {
                 string url = "http://apis.juhe.cn/ip/ip2addr?ip=" + ip + "&dtype=json&key=b39857e36bee7a305d55cdb113a9d725";
-                res = Net.HttpGet(url);
+                res = Util.HttpGet(url);
                 objex resjson = res.ToObject<objex>();
                 res = resjson.result.area + " " + resjson.result.location;
             }
@@ -34,7 +34,7 @@ namespace Codeping.Utils
             try
             {
                 string url = "https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?query=" + ip + "&resource_id=6006&ie=utf8&oe=gbk&format=json";
-                res = Net.HttpGet(url, Encoding.GetEncoding("GBK"));
+                res = Util.HttpGet(url, Encoding.GetEncoding("GBK"));
                 obj resjson = res.ToObject<obj>();
                 res = resjson.data[0].location;
             }

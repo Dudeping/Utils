@@ -18,7 +18,7 @@ namespace Codeping.Utils
         /// 创建属性表达式
         /// </summary>
         /// <param name="expression">表达式</param>
-        /// <param name="propertyName">属性名,支持多级属性名，与句点分隔，范例：Customer.Name</param>
+        /// <param name="propertyName">属性名, 支持多级属性名, 与句点分隔, 范例：Customer.Name</param>
         public static Expression Property(this Expression expression, string propertyName)
         {
             if (propertyName.All(t => t != '.'))
@@ -398,7 +398,7 @@ namespace Codeping.Utils
         /// <param name="first">左操作数</param>
         /// <param name="second">右操作数</param>
         /// <param name="merge">合并操作</param>
-        internal static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second,
+        internal static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second, 
             Func<Expression, Expression, Expression> merge)
         {
             System.Collections.Generic.Dictionary<ParameterExpression, ParameterExpression> map = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] }).ToDictionary(p => p.s, p => p.f);

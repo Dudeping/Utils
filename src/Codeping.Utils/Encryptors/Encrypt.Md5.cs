@@ -10,7 +10,7 @@ namespace Codeping.Utils
     public static partial class Encrypt
     {
         /// <summary>
-        /// Md5 加密，返回 16 位结果
+        /// Md5 加密, 返回 16 位结果
         /// </summary>
         /// <param name="value">值</param>
         public static string Md5By16(this string value)
@@ -19,7 +19,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Md5 加密，返回 16 位结果
+        /// Md5 加密, 返回 16 位结果
         /// </summary>
         /// <param name="value">值</param>
         /// <param name="encoding">字符编码</param>
@@ -29,7 +29,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Md5 加密，返回 32 位结果
+        /// Md5 加密, 返回 32 位结果
         /// </summary>
         /// <param name="value">值</param>
         public static string Md5By32(this string value)
@@ -38,7 +38,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Md5 加密，返回 32 位结果
+        /// Md5 加密, 返回 32 位结果
         /// </summary>
         /// <param name="value">值</param>
         /// <param name="encoding">字符编码</param>

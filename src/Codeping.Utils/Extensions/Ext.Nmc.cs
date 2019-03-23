@@ -37,9 +37,9 @@ namespace Codeping.Utils
 
                 return new NmcModel()
                 {
-                    Label = datetime,
-                    DateTime = DateTime.Now,
-                    Url = "http://m.nmc.cn/publish/weather-bulletin/index.htm",
+                    Label = datetime, 
+                    DateTime = DateTime.Now, 
+                    Url = "http://m.nmc.cn/publish/weather-bulletin/index.htm", 
                 };
             }
             catch (Exception)
@@ -106,10 +106,10 @@ namespace Codeping.Utils
 
                 forecast.Forecats.Add(new ForecastItem
                 {
-                    CName = cname,
-                    Weather = weather,
-                    Temp = temp,
-                    Url = "http://m.nmc.cn" + url,
+                    CName = cname, 
+                    Weather = weather, 
+                    Temp = temp, 
+                    Url = "http://m.nmc.cn" + url, 
                 });
             }
 
@@ -117,9 +117,9 @@ namespace Codeping.Utils
 
             return new NmcModel
             {
-                Label = label,
-                DateTime = DateTime.Now,
-                Url = $"{domain}/weather/forecast",
+                Label = label, 
+                DateTime = DateTime.Now, 
+                Url = $"{domain}/weather/forecast", 
             };
         }
 
@@ -158,9 +158,9 @@ namespace Codeping.Utils
 
                 yield return new NmcModel
                 {
-                    Label = words,
-                    DateTime = odate,
-                    Url = url,
+                    Label = words, 
+                    DateTime = odate, 
+                    Url = url, 
                 };
             }
         }

@@ -13,7 +13,7 @@ namespace Codeping.Utils
         /// <param name="json">Json字符串</param>
         public static T ToObject<T>(this string json)
         {
-            return string.IsNullOrWhiteSpace(json) ? default : JsonConvert.DeserializeObject<T>(json);
+            return json.IsEmpty() ? default : JsonConvert.DeserializeObject<T>(json);
         }
 
         /// <summary>

@@ -273,7 +273,7 @@ namespace Codeping.Utils
                     RSA rsa = RSA.Create();
                     RSAParameters rsaKeyInfo = new RSAParameters
                     {
-                        Modulus = modulus,
+                        Modulus = modulus, 
                         Exponent = exponent
                     };
                     rsa.ImportParameters(rsaKeyInfo);
@@ -357,7 +357,7 @@ namespace Codeping.Utils
         /// <summary>
         /// SHA1
         /// </summary>
-        RSA = 0,
+        RSA = 0, 
         /// <summary>
         /// RSA2 密钥长度至少为2048
         /// SHA256

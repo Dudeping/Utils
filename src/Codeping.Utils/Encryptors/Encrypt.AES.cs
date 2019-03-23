@@ -85,9 +85,9 @@ namespace Codeping.Utils
         {
             return new RijndaelManaged
             {
-                Key = System.Convert.FromBase64String(key),
-                Mode = CipherMode.CBC,
-                Padding = PaddingMode.PKCS7,
+                Key = System.Convert.FromBase64String(key), 
+                Mode = CipherMode.CBC, 
+                Padding = PaddingMode.PKCS7, 
                 IV = Iv
             };
         }

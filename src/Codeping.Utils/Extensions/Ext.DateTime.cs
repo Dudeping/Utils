@@ -9,7 +9,7 @@ namespace Codeping.Utils
     public static partial class Ext
     {
         /// <summary>
-        /// 获取格式化字符串，带时分秒，格式："yyyy-MM-dd HH:mm:ss"
+        /// 获取格式化字符串, 带时分秒, 格式："yyyy-MM-dd HH:mm:ss"
         /// </summary>
         /// <param name="dateTime">日期</param>
         /// <param name="isRemoveSecond">是否移除秒</param>
@@ -19,7 +19,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，带时分秒，格式："yyyy-MM-dd HH:mm:ss"
+        /// 获取格式化字符串, 带时分秒, 格式："yyyy-MM-dd HH:mm:ss"
         /// </summary>
         /// <param name="dateTime">日期</param>
         /// <param name="isRemoveSecond">是否移除秒</param>
@@ -29,7 +29,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，不带时分秒，格式："yyyy-MM-dd"
+        /// 获取格式化字符串, 不带时分秒, 格式："yyyy-MM-dd"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToDateString(this DateTime dateTime)
@@ -38,7 +38,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，不带时分秒，格式："yyyy-MM-dd"
+        /// 获取格式化字符串, 不带时分秒, 格式："yyyy-MM-dd"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToDateString(this DateTime? dateTime)
@@ -47,7 +47,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，不带年月日，格式："HH:mm:ss"
+        /// 获取格式化字符串, 不带年月日, 格式："HH:mm:ss"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToTimeString(this DateTime dateTime)
@@ -56,7 +56,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，不带年月日，格式："HH:mm:ss"
+        /// 获取格式化字符串, 不带年月日, 格式："HH:mm:ss"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToTimeString(this DateTime? dateTime)
@@ -65,7 +65,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，带毫秒，格式："yyyy-MM-dd HH:mm:ss.fff"
+        /// 获取格式化字符串, 带毫秒, 格式："yyyy-MM-dd HH:mm:ss.fff"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToMillisecondString(this DateTime dateTime)
@@ -74,7 +74,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，带毫秒，格式："yyyy-MM-dd HH:mm:ss.fff"
+        /// 获取格式化字符串, 带毫秒, 格式："yyyy-MM-dd HH:mm:ss.fff"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToMillisecondString(this DateTime? dateTime)
@@ -83,7 +83,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，不带时分秒，格式："yyyy年MM月dd日"
+        /// 获取格式化字符串, 不带时分秒, 格式："yyyy年MM月dd日"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToChineseDateString(this DateTime dateTime)
@@ -92,7 +92,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，不带时分秒，格式："yyyy年MM月dd日"
+        /// 获取格式化字符串, 不带时分秒, 格式："yyyy年MM月dd日"
         /// </summary>
         /// <param name="dateTime">日期</param>
         public static string ToChineseDateString(this DateTime? dateTime)
@@ -101,7 +101,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，带时分秒，格式："yyyy年MM月dd日 HH时mm分"
+        /// 获取格式化字符串, 带时分秒, 格式："yyyy年MM月dd日 HH时mm分"
         /// </summary>
         /// <param name="dateTime">日期</param>
         /// <param name="isRemoveSecond">是否移除秒</param>
@@ -118,7 +118,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取格式化字符串，带时分秒，格式："yyyy年MM月dd日 HH时mm分"
+        /// 获取格式化字符串, 带时分秒, 格式："yyyy年MM月dd日 HH时mm分"
         /// </summary>
         /// <param name="dateTime">日期</param>
         /// <param name="isRemoveSecond">是否移除秒</param>
@@ -171,7 +171,7 @@ namespace Codeping.Utils
         /// 获取 Unix 时间戳
         /// </summary>
         /// <param name="time">时间</param>
-        public static long GetUnixTimestamp(this DateTime time)
+        public static long GetUnixTimestamp(this DateTime time, bool hasMs = false)
         {
             DateTime start = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
 
@@ -184,7 +184,7 @@ namespace Codeping.Utils
         /// 从 Unix 时间戳获取时间
         /// </summary>
         /// <param name="timestamp"> Unix 时间戳</param>
-        public static DateTime GetTimeFromUnixTimestamp(this long timestamp)
+        public static DateTime GetTimeFromUnixTimestamp(this long timestamp, bool hasMs = false)
         {
             DateTime start = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
 

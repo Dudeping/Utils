@@ -25,15 +25,14 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static int? ToIntOrNull(this object input)
         {
-            bool success = int.TryParse(input.SafeString(), out int r);
-            if (success)
+            if (int.TryParse(input.SafeString(), out int r))
             {
                 return r;
             }
 
             try
             {
-                double? temp = ToDoubleOrNull(input, 0);
+                double? temp = input.ToDoubleOrNull(0);
 
                 if (temp == null)
                 {
@@ -46,102 +45,6 @@ namespace Codeping.Utils
             {
                 return null;
             }
-        }
-
-        /// <summary>
-        /// 转换为 32 位浮点型,并按指定小数位舍入
-        /// </summary>
-        /// <param name="input">输入值</param>
-        /// <param name="digits">小数位数</param>
-        public static float ToFloat(this object input, int? digits = null)
-        {
-            return input.ToFloatOrNull(digits) ?? 0;
-        }
-
-        /// <summary>
-        /// 转换为 32 位可空浮点型,并按指定小数位舍入
-        /// </summary>
-        /// <param name="input">输入值</param>
-        /// <param name="digits">小数位数</param>
-        public static float? ToFloatOrNull(this object input, int? digits = null)
-        {
-            bool success = float.TryParse(input.SafeString(), out float r);
-
-            if (!success)
-            {
-                return null;
-            }
-
-            if (digits == null)
-            {
-                return r;
-            }
-
-            return (float)Math.Round(r, digits.Value);
-        }
-
-        /// <summary>
-        /// 转换为 64 位浮点型,并按指定小数位舍入
-        /// </summary>
-        /// <param name="input">输入值</param>
-        /// <param name="digits">小数位数</param>
-        public static double ToDouble(this object input, int? digits = null)
-        {
-            return input.ToDoubleOrNull(digits) ?? 0;
-        }
-
-        /// <summary>
-        /// 转换为 64 位可空浮点型,并按指定小数位舍入
-        /// </summary>
-        /// <param name="input">输入值</param>
-        /// <param name="digits">小数位数</param>
-        public static double? ToDoubleOrNull(this object input, int? digits = null)
-        {
-            bool success = double.TryParse(input.SafeString(), out double r);
-
-            if (!success)
-            {
-                return null;
-            }
-
-            if (digits == null)
-            {
-                return r;
-            }
-
-            return Math.Round(r, digits.Value);
-        }
-
-        /// <summary>
-        /// 转换为 128 位浮点型,并按指定小数位舍入
-        /// </summary>
-        /// <param name="input">输入值</param>
-        /// <param name="digits">小数位数</param>
-        public static decimal ToDecimal(this object input, int? digits = null)
-        {
-            return ToDecimalOrNull(input, digits) ?? 0;
-        }
-
-        /// <summary>
-        /// 转换为 128 位可空浮点型,并按指定小数位舍入
-        /// </summary>
-        /// <param name="input">输入值</param>
-        /// <param name="digits">小数位数</param>
-        public static decimal? ToDecimalOrNull(this object input, int? digits = null)
-        {
-            bool success = decimal.TryParse(input.SafeString(), out decimal r);
-
-            if (!success)
-            {
-                return null;
-            }
-
-            if (digits == null)
-            {
-                return r;
-            }
-
-            return Math.Round(r, digits.Value);
         }
 
         /// <summary>
@@ -159,9 +62,7 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static long? ToLongOrNull(this object input)
         {
-            bool success = long.TryParse(input.SafeString(), out long r);
-
-            if (success)
+            if (long.TryParse(input.SafeString(), out long r))
             {
                 return r;
             }
@@ -169,6 +70,7 @@ namespace Codeping.Utils
             try
             {
                 decimal? temp = input.ToDecimalOrNull(0);
+
                 if (temp == null)
                 {
                     return null;
@@ -180,6 +82,102 @@ namespace Codeping.Utils
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// 转换为 32 位浮点型, 并按指定小数位舍入
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="digits">小数位数</param>
+        public static float ToFloat(this object input, int? digits = null)
+        {
+            return input.ToFloatOrNull(digits) ?? 0;
+        }
+
+        /// <summary>
+        /// 转换为 32 位可空浮点型, 并按指定小数位舍入
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="digits">小数位数</param>
+        public static float? ToFloatOrNull(this object input, int? digits = null)
+        {
+            if (float.TryParse(input.SafeString(), out float r))
+            {
+                if (digits != null)
+                {
+                    return (float)Math.Round(r, digits.Value);
+                }
+                else
+                {
+                    return r;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 转换为 64 位浮点型, 并按指定小数位舍入
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="digits">小数位数</param>
+        public static double ToDouble(this object input, int? digits = null)
+        {
+            return input.ToDoubleOrNull(digits) ?? 0;
+        }
+
+        /// <summary>
+        /// 转换为 64 位可空浮点型, 并按指定小数位舍入
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="digits">小数位数</param>
+        public static double? ToDoubleOrNull(this object input, int? digits = null)
+        {
+            if (double.TryParse(input.SafeString(), out double r))
+            {
+                if (digits != null)
+                {
+                    return Math.Round(r, digits.Value);
+                }
+                else
+                {
+                    return r;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 转换为 128 位浮点型, 并按指定小数位舍入
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="digits">小数位数</param>
+        public static decimal ToDecimal(this object input, int? digits = null)
+        {
+            return input.ToDecimalOrNull(digits) ?? 0;
+        }
+
+        /// <summary>
+        /// 转换为 128 位可空浮点型, 并按指定小数位舍入
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="digits">小数位数</param>
+        public static decimal? ToDecimalOrNull(this object input, int? digits = null)
+        {
+            if (decimal.TryParse(input.SafeString(), out decimal r))
+            {
+                if (digits != null)
+                {
+                    return Math.Round(r, digits.Value);
+                }
+                else
+                {
+                    return r;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -249,7 +247,7 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>        
         public static byte[] ToBytes(this string input)
         {
-            return ToBytes(input, Encoding.UTF8);
+            return input.ToBytes(Encoding.UTF8);
         }
 
         /// <summary>
@@ -259,25 +257,7 @@ namespace Codeping.Utils
         /// <param name="encoding">字符编码</param>
         public static byte[] ToBytes(this string input, Encoding encoding)
         {
-            return string.IsNullOrWhiteSpace(input) ? new byte[] { } : encoding.GetBytes(input);
-        }
-
-        /// <summary>
-        /// 安全返回值
-        /// </summary>
-        /// <param name="value">可空值</param>
-        public static T SafeValue<T>(this T? value) where T : struct
-        {
-            return value ?? default;
-        }
-
-        /// <summary>
-        /// 安全转换为字符串，去除两端空格，当值为null时返回""
-        /// </summary>
-        /// <param name="input">输入值</param>
-        public static string SafeString(this object input)
-        {
-            return input?.ToString().Trim() ?? string.Empty;
+            return input.IsEmpty() ? new byte[] { } : encoding.GetBytes(input);
         }
 
         /// <summary>
@@ -304,90 +284,31 @@ namespace Codeping.Utils
         /// <param name="value">值</param>
         public static bool IsEmpty(this Guid value)
         {
-            return value == Guid.Empty ? true : false;
-        }
-
-        /// <summary>
-        /// 转换为Guid集合
-        /// </summary>
-        /// <param name="input">以逗号分隔的Guid集合字符串，范例:83B0233C-A24F-49FD-8083-1337209EBC9A,EAB523C6-2FE7-47BE-89D5-C6D440C3033A</param>
-        public static List<Guid> ToGuidList(string input)
-        {
-            return input.ToList<Guid>();
+            return value == Guid.Empty;
         }
 
         /// <summary>
         /// 泛型集合转换
         /// </summary>
         /// <typeparam name="T">目标元素类型</typeparam>
-        /// <param name="input">以逗号分隔的元素集合字符串，范例:83B0233C-A24F-49FD-8083-1337209EBC9A,EAB523C6-2FE7-47BE-89D5-C6D440C3033A</param>
-        public static List<T> ToList<T>(this string input)
+        /// <param name="input">以指定分割符分割的元素的原数据</param>
+        public static List<T> ToList<T>(this string input, string separator)
         {
-            List<T> r = new List<T>();
-
-            if (string.IsNullOrWhiteSpace(input))
+            if (input.IsEmpty())
             {
-                return r;
+                return new List<T>();
             }
 
-            string[] array = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] array = input.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
 
-            return array.Select(x => x.To<T>()).ToList();
-        }
-
-        /// <summary>
-        /// 通用泛型转换
-        /// </summary>
-        /// <typeparam name="T">目标类型</typeparam>
-        /// <param name="input">输入值</param>
-        public static T To<T>(this object input)
-        {
-            if (input == null)
-            {
-                return default;
-            }
-
-            if (input is string && string.IsNullOrWhiteSpace(input.ToString()))
-            {
-                return default;
-            }
-
-            Type type = TypeEx.GetType<T>();
-            string typeName = type.Name.ToLower();
-
-            try
-            {
-                if (typeName == "string")
-                {
-                    return (T)(object)input.ToString();
-                }
-
-                if (typeName == "guid")
-                {
-                    return (T)(object)new Guid(input.ToString());
-                }
-
-                if (type.IsEnum)
-                {
-                    return (T)Enum.Parse(TypeEx.GetType<T>(), input.SafeString(), true);
-                }
-
-                if (input is IConvertible)
-                {
-                    return (T)Convert.ChangeType(input, type);
-                }
-
-                return (T)input;
-            }
-            catch
-            {
-                return default;
-            }
+            return array.Select(x => x.Cast<T>()).ToList();
         }
 
         /// <summary>
         /// 获取布尔值
         /// </summary>
+        /// <param name="input">原数据</param>
+        /// <returns></returns>
         private static bool? GetBool(this object input)
         {
             switch (input.SafeString().ToLower())

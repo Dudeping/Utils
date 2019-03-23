@@ -11,7 +11,7 @@ namespace Codeping.Utils
     public static class ThreadEx
     {
         /// <summary>
-        /// 执行多个操作，等待所有操作完成
+        /// 执行多个操作, 等待所有操作完成
         /// </summary>
         /// <param name="actions">操作集合</param>
         public static void WaitAll([NotNull]params Action[] actions)

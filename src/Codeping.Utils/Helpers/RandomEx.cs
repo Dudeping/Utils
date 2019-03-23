@@ -23,7 +23,7 @@ namespace Codeping.Utils
         /// 生成随机长度字符串
         /// </summary>
         /// <param name="maxLength">最大长度</param>
-        /// <param name="text">如果传入该参数，则从该文本中随机抽取</param>
+        /// <param name="text">如果传入该参数, 则从该文本中随机抽取</param>
         public static string GenerateString(int maxLength, string text = null)
         {
             int length = _rnd.Next(1, maxLength);
@@ -35,7 +35,7 @@ namespace Codeping.Utils
         /// 生成固定长度随机字符串
         /// </summary>
         /// <param name="maxLength">长度</param>
-        /// <param name="text">如果传入该参数，则从该文本中随机抽取</param>
+        /// <param name="text">如果传入该参数, 则从该文本中随机抽取</param>
         public static string GenerateString(long length, string text = null)
         {
             if (text == null)
@@ -59,7 +59,7 @@ namespace Codeping.Utils
         /// <param name="maxLength">最大长度</param>
         public static string GenerateLetters(int maxLength)
         {
-            return GenerateString(maxLength, Const.Letters);
+            return RandomEx.GenerateString(maxLength, Const.Letters);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Codeping.Utils
         /// <param name="maxLength">最大长度</param>
         public static string GenerateChinese(int maxLength)
         {
-            return GenerateString(maxLength, Const.SimplifiedChinese);
+            return RandomEx.GenerateString(maxLength, Const.SimplifiedChinese);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Codeping.Utils
         /// <param name="maxLength">最大长度</param>
         public static string GenerateNumbers(int maxLength)
         {
-            return GenerateString(maxLength, Const.Numbers);
+            return RandomEx.GenerateString(maxLength, Const.Numbers);
         }
 
         /// <summary>
@@ -105,6 +105,16 @@ namespace Codeping.Utils
         }
 
         /// <summary>
+        /// 生成随机整数
+        /// </summary>
+        /// <param name="maxValue">最小值</param>
+        /// <param name="maxValue">最大值</param>
+        public static int GenerateInt(int minValue, int maxValue)
+        {
+            return _rnd.Next(minValue, maxValue + 1);
+        }
+
+        /// <summary>
         /// 生成随机日期
         /// </summary>
         /// <param name="beginYear">起始年份</param>
@@ -127,11 +137,11 @@ namespace Codeping.Utils
         /// <typeparam name="TEnum">枚举类型</typeparam>
         public static TEnum GenerateEnum<TEnum>() where TEnum : Enum
         {
-            List<Item> items = Ext.GetItems<TEnum>();
+            List<Item> items = EnumEx.GetItems<TEnum>();
 
             int index = _rnd.Next(0, items.Count);
 
-            return items[index].Value.Parse<TEnum>();
+            return EnumEx.Parse<TEnum>(items[index].Value);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Codeping.Utils.WeChat
             {
                 context.Result = new ContentResult()
                 {
-                    Content = "不支持除微信浏览器以外的请求!",
+                    Content = "不支持除微信浏览器以外的请求!", 
                 };
                 return;
             }
@@ -65,7 +65,7 @@ namespace Codeping.Utils.WeChat
                             return;
                         }
 
-                        throw new Exception("授权出错，获取 access_token 失败！");
+                        throw new Exception("授权出错, 获取 access_token 失败！");
                     }
 
                     redirectUrl += (redirectUrl.Contains("?") ? "&" : "?") + "openId=" + result.openid;
@@ -117,8 +117,8 @@ namespace Codeping.Utils.WeChat
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, openid),
-                    new Claim(ClaimTypes.Role, "WeChat"),
+                    new Claim(ClaimTypes.Name, openid), 
+                    new Claim(ClaimTypes.Role, "WeChat"), 
                 };
 
                 var identity = new ClaimsIdentity(claims, WeChatAuthenticationDefaults.AuthenticationScheme);

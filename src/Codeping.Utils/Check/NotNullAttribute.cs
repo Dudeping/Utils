@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace Codeping.Utils
 {
     /// <summary>
-    /// 验证不能为null
+    /// 验证不能为 null
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
     public class NotNullAttribute : ParameterInterceptorAttribute

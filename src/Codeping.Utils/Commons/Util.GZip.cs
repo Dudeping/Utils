@@ -7,8 +7,11 @@ using System.Text;
 
 namespace Codeping.Utils
 {
-    public class GZip
-    { 
+    /// <summary>
+    /// 
+    /// </summary>
+    public static partial class Util
+    {
         /// <summary>
         /// 压缩
         /// </summary>

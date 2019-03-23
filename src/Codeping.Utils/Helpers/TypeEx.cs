@@ -19,11 +19,11 @@ namespace Codeping.Utils
         /// <typeparam name="T">类型</typeparam>
         public static Type GetType<T>()
         {
-            return typeof(T).GetType();
+            return typeof(T);
         }
 
         /// <summary>
-        /// 获取类型描述，使用 DescriptionAttribute 设置描述
+        /// 获取类型描述, 使用 DescriptionAttribute 设置描述
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         public static string GetDescription<T>()
@@ -32,7 +32,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取类型成员描述，使用 DescriptionAttribute 设置描述
+        /// 获取类型成员描述, 使用 DescriptionAttribute 设置描述
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         /// <param name="memberName">成员名称</param>
@@ -42,7 +42,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取显示名称，使用 DisplayNameAttribute 设置显示名称
+        /// 获取显示名称, 使用 DisplayNameAttribute 设置显示名称
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         public static string GetDisplayName<T>()
@@ -51,7 +51,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取显示名称或描述,使用 DisplayNameAttribute 设置显示名称,使用 DescriptionAttribute 设置描述
+        /// 获取显示名称或描述, 使用 DisplayNameAttribute 设置显示名称, 使用 DescriptionAttribute 设置描述
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         public static string GetDisplayNameOrDescription<T>()

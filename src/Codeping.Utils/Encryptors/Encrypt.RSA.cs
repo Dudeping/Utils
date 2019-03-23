@@ -11,7 +11,7 @@ namespace Codeping.Utils
     public static partial class Encrypt
     {
         /// <summary>
-        /// RSA 加密，采用 SHA1 算法
+        /// RSA 加密, 采用 SHA1 算法
         /// </summary>
         /// <param name="value">待加密的值</param>
         /// <param name="key">密钥</param>
@@ -21,7 +21,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// RSA加密，采用 SHA1 算法
+        /// RSA加密, 采用 SHA1 算法
         /// </summary>
         /// <param name="value">待加密的值</param>
         /// <param name="key">密钥</param>
@@ -32,7 +32,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// RSA 加密，采用 SHA256 算法
+        /// RSA 加密, 采用 SHA256 算法
         /// </summary>
         /// <param name="value">待加密的值</param>
         /// <param name="key">密钥</param>
@@ -42,7 +42,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// RSA加密，采用 SHA256 算法
+        /// RSA加密, 采用 SHA256 算法
         /// </summary>
         /// <param name="value">待加密的值</param>
         /// <param name="key">密钥</param>
@@ -67,7 +67,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Rsa验签，采用 SHA1 算法
+        /// Rsa验签, 采用 SHA1 算法
         /// </summary>
         /// <param name="value">待验签的值</param>
         /// <param name="publicKey">公钥</param>
@@ -78,7 +78,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Rsa 验签，采用 SHA1 算法
+        /// Rsa 验签, 采用 SHA1 算法
         /// </summary>
         /// <param name="value">待验签的值</param>
         /// <param name="publicKey">公钥</param>
@@ -90,7 +90,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Rsa 验签，采用 SHA256 算法
+        /// Rsa 验签, 采用 SHA256 算法
         /// </summary>
         /// <param name="value">待验签的值</param>
         /// <param name="publicKey">公钥</param>
@@ -101,7 +101,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// Rsa 验签，采用 SHA256 算法
+        /// Rsa 验签, 采用 SHA256 算法
         /// </summary>
         /// <param name="value">待验签的值</param>
         /// <param name="publicKey">公钥</param>

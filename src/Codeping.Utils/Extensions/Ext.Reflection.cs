@@ -28,18 +28,9 @@ namespace Codeping.Utils
         /// </summary>
         /// <param name="member">成员信息</param>
         /// <param name="instance">成员所在的类实例</param>
-        public static object GetPropertyValue(this MemberInfo member, object instance)
+        public static object GetPropertyValue([NotNull]this MemberInfo member, [NotNull]object instance)
         {
-            if (member == null)
-            {
-                throw new ArgumentNullException(nameof(member));
-            }
-
-            if (instance == null)
-            {
-                throw new ArgumentNullException(nameof(instance));
-            }
-
+            return member.GetPropertyValue(instance);
             return instance.GetType().GetProperty(member.Name)?.GetValue(instance);
         }
 
@@ -60,7 +51,7 @@ namespace Codeping.Utils
         /// <param name="parameters">传递给构造函数的参数</param>        
         public static T CreateInstance<T>(this Type type, params object[] parameters)
         {
-            return Activator.CreateInstance(type, parameters).To<T>();
+            return Activator.CreateInstance(type, parameters).Cast<T>();
         }
 
         /// <summary>
@@ -73,9 +64,10 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 是否为可空类型
+        /// 判断类型是否可空
         /// </summary>
         /// <param name="type">类型</param>
+        /// <returns></returns>
         public static bool IsNullable(this Type type)
         {
             return Nullable.GetUnderlyingType(type) != null;
@@ -318,12 +310,7 @@ namespace Codeping.Utils
         /// <param name="type">类型</param>
         public static bool IsCollection(this Type type)
         {
-            if (type.IsArray)
-            {
-                return true;
-            }
-
-            return type.IsGenericCollection();
+            return type.IsArray || type.IsGenericCollection();
         }
 
         /// <summary>
@@ -354,7 +341,7 @@ namespace Codeping.Utils
         {
             return Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories).ToList()
                 .Where(t => t.EndsWith(".exe") || t.EndsWith(".dll"))
-                .Select(path => Assembly.Load(new AssemblyName(path))).ToList();
+                .ToList(path => Assembly.Load(new AssemblyName(path)));
         }
 
         /// <summary>
@@ -363,8 +350,7 @@ namespace Codeping.Utils
         /// <param name="instance">实例</param>
         public static List<Item> GetPublicProperties(this object instance)
         {
-            PropertyInfo[] properties = instance.GetType().GetProperties();
-            return properties.ToList().Select(t => new Item(t.Name, t.GetValue(instance))).ToList();
+            return instance.GetType().GetProperties().ToList(t => new Item(t.Name, t.GetValue(instance)));
         }
 
         /// <summary>
@@ -392,18 +378,14 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取类型成员描述，使用 DescriptionAttribute 设置描述
+        /// 获取类型成员描述, 使用 DescriptionAttribute 设置描述
         /// </summary>
         /// <param name="type">类型</param>
         /// <param name="memberName">成员名称</param>
         public static string GetDescription(this Type type, string memberName)
         {
-            if (type == null)
-            {
-                return string.Empty;
-            }
-
-            if (memberName.IsEmpty())
+            if (type == null ||
+                memberName.IsEmpty())
             {
                 return string.Empty;
             }
@@ -412,7 +394,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取类型成员描述，使用 DescriptionAttribute 设置描述
+        /// 获取类型成员描述, 使用 DescriptionAttribute 设置描述
         /// </summary>
         /// <param name="member">成员</param>
         public static string GetDescription(this MemberInfo member)
@@ -426,7 +408,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取显示名称，使用 DisplayAttribute 或 DisplayNameAttribute 设置显示名称
+        /// 获取显示名称, 使用 DisplayAttribute 或 DisplayNameAttribute 设置显示名称
         /// </summary>
         public static string GetDisplayName(this MemberInfo member)
         {
@@ -449,7 +431,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取属性显示名称或描述,使用 DisplayAttribute 或 DisplayNameAttribute 设置显示名称,使用 DescriptionAttribute 设置描述
+        /// 获取属性显示名称或描述, 使用 DisplayAttribute 或 DisplayNameAttribute 设置显示名称, 使用 DescriptionAttribute 设置描述
         /// </summary>
         public static string GetDisplayNameOrDescription(this MemberInfo member)
         {

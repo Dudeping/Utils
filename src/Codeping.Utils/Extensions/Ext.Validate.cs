@@ -27,7 +27,7 @@ namespace Codeping.Utils
             // 判断用户名的长度（4-20个字符）及内容（只能是汉字、字母、下划线、数字）是否合法
             int userNameLength = GetStringLength(userName);
 
-            return userNameLength >= 4 && userNameLength <= 20 && Regex.IsMatch(userName, @"^([\u4e00-\u9fa5A-Za-z_0-9]{0,})$");
+            return userNameLength >= 4 && userNameLength <= 20 && Regex.IsMatch(userName, @"^([\u4e00-\u9fa5A-Za-z_0-9]{0, })$");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static bool IsValidPassword(this string password)
         {
-            return Regex.IsMatch(password, @"^[A-Za-z_0-9]{6,16}$");
+            return Regex.IsMatch(password, @"^[A-Za-z_0-9]{6, 16}$");
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static bool IsValidPhone(this string phone)
         {
-            return Regex.IsMatch(phone, @"^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$", RegexOptions.None);
+            return Regex.IsMatch(phone, @"^(\(\d{3, 4}\)|\d{3, 4}-)?\d{7, 8}$", RegexOptions.None);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static bool IsValidPhoneAndMobile(this string number)
         {
-            return Regex.IsMatch(number, @"^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$|^(13|15)\d{9}$", RegexOptions.None);
+            return Regex.IsMatch(number, @"^(\(\d{3, 4}\)|\d{3, 4}-)?\d{7, 8}$|^(13|15)\d{9}$", RegexOptions.None);
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         static public bool IsValidURL(this string url)
         {
-            return Regex.IsMatch(url, @"^(http|https|ftp)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&%\$#\=~])*[^\.\,\)\(\s]$");
+            return Regex.IsMatch(url, @"^(http|https|ftp)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2, 3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\, \'/\\\+&%\$#\=~])*[^\.\, \)\(\s]$");
         }
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 判断输入的字符是否为日期,如2004-07-12 14:25|||1900-01-01 00:00|||9999-12-31 23:59
+        /// 判断输入的字符是否为日期, 如2004-07-12 14:25|||1900-01-01 00:00|||9999-12-31 23:59
         /// </summary>
         /// <param name="strValue"></param>
         /// <returns></returns>
@@ -269,7 +269,7 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 检查字符串最大长度，返回指定长度的串
+        /// 检查字符串最大长度, 返回指定长度的串
         /// </summary>
         /// <param name="sqlInput">输入字符串</param>
         /// <param name="maxLength">最大长度</param>

@@ -16,7 +16,7 @@ namespace Codeping.Utils
         /// </summary>
         public override Task Invoke(ParameterAspectContext context, ParameterAspectDelegate next)
         {
-            if (string.IsNullOrWhiteSpace(context.Parameter.Value.SafeString()))
+            if (context.Parameter.Value.SafeString().IsEmpty())
             {
                 throw new ArgumentNullException(context.Parameter.Name);
             }

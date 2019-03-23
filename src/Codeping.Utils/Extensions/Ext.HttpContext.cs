@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace Codeping.Utils
 {
@@ -22,12 +21,7 @@ namespace Codeping.Utils
         {
             string result = context?.GetWebClientIp();
 
-            if (result.IsEmpty())
-            {
-                result = GetLanIp();
-            }
-
-            return result;
+            return result.IsEmpty() ? GetLanIp() : result;
         }
 
         /// <summary>
@@ -39,7 +33,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static string SaveFileTo(this HttpRequest request, string name, string rootDir)
         {
-            var file = request.Form.Files.GetFile(name);
+            IFormFile file = request.Form.Files.GetFile(name);
 
             if (file == null)
             {
@@ -50,18 +44,18 @@ namespace Codeping.Utils
 
             string fileName = RandomEx.GenerateGuid() + fileExt;
 
-            var relativePath = "/upload/" + fileName;
+            string relativePath = "/upload/" + fileName;
 
-            var filePath = rootDir + relativePath;
+            string filePath = rootDir + relativePath;
 
-            var directory = Path.GetDirectoryName(filePath);
+            string directory = Path.GetDirectoryName(filePath);
 
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
 
-            using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
+            using (FileStream stream = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 file.CopyTo(stream);
             }
@@ -144,7 +138,7 @@ namespace Codeping.Utils
                 return new List<string>();
             }
 
-            return csvList.TrimEnd(',').Split(',').AsEnumerable().Select(s => s.Trim()).ToList();
+            return csvList.TrimEnd(',').Split(',').ToList(s => s.Trim());
         }
     }
 }

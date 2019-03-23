@@ -17,7 +17,7 @@ namespace Codeping.Utils
         /// <summary>
         /// 获取类型
         /// </summary>
-        /// <param name="expression">表达式,范例：t => t.Name</param>
+        /// <param name="expression">表达式, 范例：t => t.Name</param>
         public static Type GetType(Expression expression)
         {
             var memberExpression = GetMemberExpression(expression);
@@ -31,7 +31,7 @@ namespace Codeping.Utils
         /// <summary>
         /// 获取成员
         /// </summary>
-        /// <param name="expression">表达式,范例：t => t.Name</param>
+        /// <param name="expression">表达式, 范例：t => t.Name</param>
         public static MemberInfo GetMember(Expression expression)
         {
             var memberExpression = GetMemberExpression(expression);
@@ -42,7 +42,7 @@ namespace Codeping.Utils
         /// 获取成员表达式
         /// </summary>
         /// <param name="expression">表达式</param>
-        /// <param name="right">取表达式右侧,(l,r) => l.id == r.id，设置为true,返回r.id表达式</param>
+        /// <param name="right">取表达式右侧, (l, r) => l.id == r.id, 设置为true, 返回r.id表达式</param>
         public static MemberExpression GetMemberExpression(Expression expression, bool right = false)
         {
             if (expression == null)
@@ -90,9 +90,9 @@ namespace Codeping.Utils
         #region GetName(获取成员名称)
 
         /// <summary>
-        /// 获取成员名称，范例：t => t.A.Name,返回 A.Name
+        /// 获取成员名称, 范例：t => t.A.Name, 返回 A.Name
         /// </summary>
-        /// <param name="expression">表达式,范例：t => t.Name</param>
+        /// <param name="expression">表达式, 范例：t => t.Name</param>
         public static string GetName(Expression expression)
         {
             var memberExpression = GetMemberExpression(expression);
@@ -115,10 +115,10 @@ namespace Codeping.Utils
         #region GetNames(获取名称列表)
 
         /// <summary>
-        /// 获取名称列表，范例：t => new object[] { t.A.B, t.C },返回A.B,C
+        /// 获取名称列表, 范例：t => new object[] { t.A.B, t.C }, 返回A.B, C
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
-        /// <param name="expression">属性集合表达式,范例：t => new object[]{t.A,t.B}</param>
+        /// <param name="expression">属性集合表达式, 范例：t => new object[]{t.A, t.B}</param>
         public static List<string> GetNames<T>(Expression<Func<T, object[]>> expression)
         {
             var result = new List<string>();
@@ -140,10 +140,10 @@ namespace Codeping.Utils
         #region GetLastName(获取最后一级成员名称)
 
         /// <summary>
-        /// 获取最后一级成员名称，范例：t => t.A.Name,返回 Name
+        /// 获取最后一级成员名称, 范例：t => t.A.Name, 返回 Name
         /// </summary>
-        /// <param name="expression">表达式,范例：t => t.Name</param>
-        /// <param name="right">取表达式右侧,(l,r) => l.LId == r.RId，设置为true,返回RId</param>
+        /// <param name="expression">表达式, 范例：t => t.Name</param>
+        /// <param name="right">取表达式右侧, (l, r) => l.LId == r.RId, 设置为true, 返回RId</param>
         public static string GetLastName(Expression expression, bool right = false)
         {
             var memberExpression = GetMemberExpression(expression, right);
@@ -158,10 +158,10 @@ namespace Codeping.Utils
         #region GetLastNames(获取最后一级成员名称列表)
 
         /// <summary>
-        /// 获取最后一级成员名称列表，范例：t => new object[] { t.A.B, t.C },返回B,C
+        /// 获取最后一级成员名称列表, 范例：t => new object[] { t.A.B, t.C }, 返回B, C
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
-        /// <param name="expression">属性集合表达式,范例：t => new object[]{t.A,t.B}</param>
+        /// <param name="expression">属性集合表达式, 范例：t => new object[]{t.A, t.B}</param>
         public static List<string> GetLastNames<T>(Expression<Func<T, object[]>> expression)
         {
             var result = new List<string>();
@@ -183,9 +183,9 @@ namespace Codeping.Utils
         #region GetValue(获取值)
 
         /// <summary>
-        /// 获取值,范例：t => t.Name == "A",返回 A
+        /// 获取值, 范例：t => t.Name == "A", 返回 A
         /// </summary>
-        /// <param name="expression">表达式,范例：t => t.Name == "A"</param>
+        /// <param name="expression">表达式, 范例：t => t.Name == "A"</param>
         public static object GetValue(Expression expression)
         {
             if (expression == null)
@@ -276,9 +276,9 @@ namespace Codeping.Utils
         #region GetParameter(获取参数)
 
         /// <summary>
-        /// 获取参数，范例：t.Name,返回 t
+        /// 获取参数, 范例：t.Name, 返回 t
         /// </summary>
-        /// <param name="expression">表达式，范例：t.Name</param>
+        /// <param name="expression">表达式, 范例：t.Name</param>
         public static ParameterExpression GetParameter(Expression expression)
         {
             if (expression == null)
@@ -311,7 +311,7 @@ namespace Codeping.Utils
         #region GetGroupPredicates(获取分组的谓词表达式)
 
         /// <summary>
-        /// 获取分组的谓词表达式，通过Or进行分组
+        /// 获取分组的谓词表达式, 通过Or进行分组
         /// </summary>
         /// <param name="expression">谓词表达式</param>
         public static List<List<Expression>> GetGroupPredicates(Expression expression)
@@ -364,8 +364,8 @@ namespace Codeping.Utils
         /// <summary>
         /// 获取查询条件个数
         /// </summary>
-        /// <param name="expression">谓词表达式,范例1：t => t.Name == "A" ，结果1。
-        /// 范例2：t => t.Name == "A" &amp;&amp; t.Age =1 ，结果2。</param>
+        /// <param name="expression">谓词表达式, 范例1：t => t.Name == "A" , 结果1。
+        /// 范例2：t => t.Name == "A" &amp;&amp; t.Age =1 , 结果2。</param>
         public static int GetConditionCount(LambdaExpression expression)
         {
             if (expression == null)
