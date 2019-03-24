@@ -10,7 +10,7 @@ namespace Utils.Tests
     {
         [Theory]
         [InlineData(null)]
-        [InlineData("")]
+        [InlineData("a")]
         public void NotNullTest(object data)
         {
             if (data.SafeString().IsEmpty())
@@ -28,7 +28,7 @@ namespace Utils.Tests
             }
             else
             {
-                this.NotEmpty(data);
+                this.NotNull(data);
             }
         }
 
@@ -61,10 +61,18 @@ namespace Utils.Tests
 
         private void NotNull([NotNull] object obj)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException(nameof(obj));
+            }
         }
 
         private void NotEmpty([NotEmpty] object obj)
         {
+            if (obj.SafeString().IsEmpty())
+            {
+                throw new ArgumentNullException(nameof(obj));
+            }
         }
     }
 }
