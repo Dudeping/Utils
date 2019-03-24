@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>codeping</Authors>
@@ -15,8 +15,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>wechat</PackageTags>
     <PackageReleaseNotes>引用项变更。</PackageReleaseNotes>
-    <LangVersion>7.3</LangVersion>
     <PackageLicenseUrl></PackageLicenseUrl>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

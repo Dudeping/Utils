@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>codeping</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -15,8 +15,8 @@
     <PackageTags>utils</PackageTags>
     <PackageReleaseNotes>项版本更新。</PackageReleaseNotes>
     <Version>0.0.1-alpha</Version>
-    <LangVersion>7.3</LangVersion>
     <PackageLicenseUrl></PackageLicenseUrl>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

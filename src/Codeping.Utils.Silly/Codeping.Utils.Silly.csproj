@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Dep.First.NuGet</PackageId>
     <Authors>codeping</Authors>
     <Product>Dep.First.NuGet</Product>
@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Version>0.0.1-alpha</Version>
     <PackageReleaseNotes>修复密码生成母版页面分布页引用。</PackageReleaseNotes>
-    <LangVersion>7.3</LangVersion>
     <PackageLicenseUrl></PackageLicenseUrl>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
