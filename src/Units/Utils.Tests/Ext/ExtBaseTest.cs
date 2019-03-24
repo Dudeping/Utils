@@ -53,6 +53,21 @@ namespace Utils.Tests
             Assert.Equal(default, "true".Cast<DateTime>());
 
             Assert.Equal(0, 0.Cast<object>());
+
+            Assert.Equal(0, ((int?)null).Cast<int>());
+
+            var child = new Child() { Id = 1 };
+            var parent = child.Cast<IParent>();
+
+            Assert.NotNull(parent);
+            Assert.Equal(child, parent);
+
+            var guid = Guid.Parse("{DB5CA5B9-E3EF-498B-BF50-6AA65C399263}");
+            Assert.Equal(guid, "{DB5CA5B9-E3EF-498B-BF50-6AA65C399263}".Cast<Guid>());
+
+            Assert.Equal(Status.Old, "old".Cast<Status>());
+            Assert.Equal((Status)0, "0".Cast<Status>());
+            Assert.Equal((Status)100, "100".Cast<Status>());
         }
     }
 }
