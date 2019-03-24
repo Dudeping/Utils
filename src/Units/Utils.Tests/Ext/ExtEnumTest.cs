@@ -12,37 +12,25 @@ namespace Utils.Tests
         [Fact]
         public void NameTest()
         {
-            Assert.Equal("A", EnumTest.A.Name());
+            Assert.Equal("Baby", Status.Baby.Name());
 
-            Assert.Equal("B", EnumTest.B.Name());
+            Assert.Equal("Adult", Status.Adult.Name());
         }
 
         [Fact]
         public void ValueTest()
         {
-            Assert.Equal(0, EnumTest.A.Value());
+            Assert.Equal(0, Status.Baby.Value());
 
-            Assert.Equal(1, EnumTest.B.Value());
+            Assert.Equal(1, Status.Young.Value());
         }
 
         [Fact]
         public void DescriptionTest()
         {
-            Assert.Equal("TestA", EnumTest.A.Description());
+            Assert.Equal("婴儿", Status.Baby.Description());
 
-            Assert.Equal("TestB", EnumTest.B.Description());
+            Assert.Equal("成年", Status.Adult.Description());
         }
-    }
-
-    enum EnumTest
-    {
-        [Description("TestA")]
-        A,
-
-        [Description("TestB")]
-        B,
-
-        [Description("TestC")]
-        C,
     }
 }
