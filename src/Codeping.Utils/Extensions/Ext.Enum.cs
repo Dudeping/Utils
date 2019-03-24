@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace Codeping.Utils
 {
@@ -34,7 +31,7 @@ namespace Codeping.Utils
         /// <param name="instance">枚举实例</param>
         public static string Description(this Enum instance)
         {
-            var type = instance.Type();
+            Type type = instance.Type();
 
             return type.GetDescription(EnumEx.GetName(type, instance));
         }

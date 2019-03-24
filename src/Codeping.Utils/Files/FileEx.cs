@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Codeping.Utils
 {
@@ -9,14 +9,19 @@ namespace Codeping.Utils
     /// </summary>
     public static class FileEx
     {
+        static FileEx()
+        {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        }
+
         /// <summary>
-        /// 创建一个新文件，将指定的字符串写入该文件，然后关闭该文件。 如果目标文件已存在，则会被覆盖。
+        /// 创建一个新隐藏文件，将指定的字符串写入该文件，然后关闭该文件。 如果目标文件已存在，则会被覆盖。
         /// </summary>
         /// <param name="path">要写入的文件。</param>
         /// <param name="contents">要写入文件的字符串。</param>
         public static void WriteHideFile(string path, string contents)
         {
-            var directory = Path.GetDirectoryName(path);
+            string directory = Path.GetDirectoryName(path);
 
             if (!Directory.Exists(directory))
             {
@@ -34,14 +39,14 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 创建一个新文件，将指定的字符串写入该文件，然后关闭该文件。 如果目标文件已存在，则会被覆盖。
+        /// 创建一个新隐藏文件，将指定的字符串写入该文件，然后关闭该文件。 如果目标文件已存在，则会被覆盖。
         /// </summary>
         /// <param name="path">要写入的文件。</param>
         /// <param name="contents">要写入文件的字符串。</param>
         /// <param name="encoding">要应用于字符串的编码。</param>
         public static void WriteHideFile(string path, string contents, Encoding encoding)
         {
-            var directory = Path.GetDirectoryName(path);
+            string directory = Path.GetDirectoryName(path);
 
             if (!Directory.Exists(directory))
             {
@@ -59,131 +64,90 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 流转换成字符串
+        /// 获取相对路径
         /// </summary>
-        /// <param name="stream">流</param>
-        /// <param name="encoding">字符编码</param>
-        /// <param name="bufferSize">缓冲区大小</param>
-        /// <param name="isCloseStream">读取完成是否释放流, 默认为true</param>
-        public static string ToString(Stream stream, Encoding encoding = null, int bufferSize = 1024 * 2, bool isCloseStream = true)
+        /// <param name="rootPath">根目录</param>
+        /// <param name="fullPath">全路径</param>
+        /// <returns></returns>
+        public static string GetRelativePath(string rootPath, string fullPath)
         {
-            if (stream == null)
+            if (rootPath.Equals(fullPath, StringComparison.OrdinalIgnoreCase))
             {
-                return string.Empty;
+                return fullPath;
             }
 
-            if (encoding == null)
+            if (Path.IsPathRooted(rootPath) &&
+                Path.IsPathRooted(fullPath) &&
+                Path.GetPathRoot(rootPath) != Path.GetPathRoot(fullPath))
             {
-                encoding = Encoding.UTF8;
+                return fullPath;
             }
 
-            if (stream.CanRead == false)
-            {
-                return string.Empty;
-            }
+            string[] absoluteDirectories = rootPath.Split('\\');
+            string[] relativeDirectories = fullPath.Split('\\');
 
-            using (StreamReader reader = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream))
+            int length = absoluteDirectories.Length < relativeDirectories.Length
+                ? absoluteDirectories.Length : relativeDirectories.Length;
+
+            int lastCommonRoot = -1;
+            int index;
+
+            for (index = 0; index < length; index++)
             {
-                if (stream.CanSeek)
+                if (absoluteDirectories[index] == relativeDirectories[index])
                 {
-                    stream.Seek(0, SeekOrigin.Begin);
+                    lastCommonRoot = index;
                 }
-
-                string result = reader.ReadToEnd();
-                if (stream.CanSeek)
+                else
                 {
-                    stream.Seek(0, SeekOrigin.Begin);
+                    break;
                 }
-
-                return result;
             }
+
+            if (lastCommonRoot == -1)
+            {
+                return "";
+            }
+
+            StringBuilder relativePath = new StringBuilder();
+
+            for (index = lastCommonRoot + 1; index < absoluteDirectories.Length; index++)
+            {
+                if (absoluteDirectories[index].Length > 0)
+                {
+                    relativePath.Append("..\\");
+                }
+            }
+
+            for (index = lastCommonRoot + 1; index < relativeDirectories.Length - 1; index++)
+            {
+                relativePath.Append(relativeDirectories[index] + "\\");
+            }
+
+            relativePath.Append(relativeDirectories[^1]);
+
+            return relativePath.ToString();
         }
 
         /// <summary>
-        /// 流转换成字符串
+        /// 获取绝对路径
         /// </summary>
-        /// <param name="stream">流</param>
-        /// <param name="encoding">字符编码</param>
-        /// <param name="bufferSize">缓冲区大小</param>
-        /// <param name="isCloseStream">读取完成是否释放流, 默认为true</param>
-        public static async Task<string> ToStringAsync(Stream stream, Encoding encoding = null, int bufferSize = 1024 * 2, bool isCloseStream = true)
+        /// <param name="rootPath">根路径</param>
+        /// <param name="relativePath">相对路径</param>
+        /// <returns></returns>
+        public static string GetAbsolutePath(string rootPath, string relativePath)
         {
-            if (stream == null)
+            string fullPath = Path.IsPathRooted(relativePath)
+                ? relativePath : Path.Combine(rootPath, relativePath);
+
+            if (fullPath.IsEmpty())
             {
-                return string.Empty;
+                return fullPath;
             }
 
-            if (encoding == null)
-            {
-                encoding = Encoding.UTF8;
-            }
+            var info = new FileInfo(fullPath);
 
-            if (stream.CanRead == false)
-            {
-                return string.Empty;
-            }
-
-            using (StreamReader reader = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream))
-            {
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                string result = await reader.ReadToEndAsync();
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// 复制流并转换成字符串
-        /// </summary>
-        /// <param name="stream">流</param>
-        /// <param name="encoding">字符编码</param>
-        public static async Task<string> CopyToStringAsync(Stream stream, Encoding encoding = null)
-        {
-            if (stream == null)
-            {
-                return string.Empty;
-            }
-
-            if (encoding == null)
-            {
-                encoding = Encoding.UTF8;
-            }
-
-            if (stream.CanRead == false)
-            {
-                return string.Empty;
-            }
-
-            using (MemoryStream memoryStream = new MemoryStream())
-            using (StreamReader reader = new StreamReader(memoryStream, encoding))
-            {
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                stream.CopyTo(memoryStream);
-                if (memoryStream.CanSeek)
-                {
-                    memoryStream.Seek(0, SeekOrigin.Begin);
-                }
-
-                string result = await reader.ReadToEndAsync();
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                return result;
-            }
+            return info.FullName;
         }
     }
 }

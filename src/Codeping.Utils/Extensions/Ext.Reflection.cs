@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +19,7 @@ namespace Codeping.Utils
         /// </summary>
         /// <param name="method">方法信息</param>
         /// <returns></returns>
-        public static string GetFullName(this MethodInfo method)
+        public static string GetFullName([NotNull]this MethodInfo method)
         {
             return $"{method.DeclaringType.FullName}.{method.Name}";
         }
@@ -37,7 +38,7 @@ namespace Codeping.Utils
         /// 获取类型
         /// </summary>
         /// <param name="type">类型</param>
-        public static Type PureType(this Type type)
+        public static Type PureType([NotNull]this Type type)
         {
             return Nullable.GetUnderlyingType(type) ?? type;
         }
@@ -46,7 +47,7 @@ namespace Codeping.Utils
         /// 获取类型
         /// </summary>
         /// <param name="type">类型</param>
-        public static Type Type(this object obj)
+        public static Type Type([NotNull]this object obj)
         {
             return obj.GetType().PureType();
         }
@@ -63,12 +64,41 @@ namespace Codeping.Utils
         }
 
         /// <summary>
-        /// 获取程序集
+        /// 是否直接依赖于指定程序集
         /// </summary>
-        /// <param name="assemblyName">程序集名称</param>
-        public static Assembly GetAssembly(this string assemblyName)
+        /// <param name="assembly">程序集</param>
+        /// <param name="dependencyAssemblyName">依赖程序集名称</param>
+        /// <returns></returns>
+        public static bool IsDependency(this Assembly assembly, string dependencyAssemblyName)
         {
-            return Assembly.Load(new AssemblyName(assemblyName));
+            var context = DependencyContext.Load(assembly);
+
+            if (context == null)
+            {
+                return false;
+            }
+
+            return context.RuntimeLibraries.Any(
+                x => x.Dependencies.Any(d => d.Name == dependencyAssemblyName));
+        }
+
+        /// <summary>
+        /// 是否直接依赖于指定程序集
+        /// </summary>
+        /// <param name="assembly">程序集</param>
+        /// <param name="dependencyAssembly">依赖程序集</param>
+        /// <returns></returns>
+        public static bool IsDependency(this Assembly assembly, Assembly dependencyAssembly)
+        {
+            var context = DependencyContext.Load(assembly);
+
+            if (context == null)
+            {
+                return false;
+            }
+
+            return context.RuntimeLibraries.Any(
+                x => x.Dependencies.Any(d => d.Name == dependencyAssembly.GetName().Name));
         }
 
         /// <summary>
@@ -203,7 +233,9 @@ namespace Codeping.Utils
             switch (member.MemberType)
             {
                 case MemberTypes.TypeInfo:
-                    return member.ToString() == "System.Int32" || member.ToString() == "System.Int16" || member.ToString() == "System.Int64";
+                    return member.ToString() == "System.Int16"
+                        || member.ToString() == "System.Int32"
+                        || member.ToString() == "System.Int64";
                 case MemberTypes.Property:
                     return IsInt((PropertyInfo)member);
             }
@@ -267,7 +299,9 @@ namespace Codeping.Utils
             switch (member.MemberType)
             {
                 case MemberTypes.TypeInfo:
-                    return member.ToString() == "System.Double" || member.ToString() == "System.Decimal" || member.ToString() == "System.Single";
+                    return member.ToString() == "System.Single"
+                        || member.ToString() == "System.Decimal"
+                        || member.ToString() == "System.Double";
                 case MemberTypes.Property:
                     return IsNumber((PropertyInfo)member);
             }
@@ -333,21 +367,22 @@ namespace Codeping.Utils
             }
 
             Type typeDefinition = type.GetGenericTypeDefinition();
+
             return typeDefinition == typeof(IEnumerable<>)
-                   || typeDefinition == typeof(IReadOnlyCollection<>)
-                   || typeDefinition == typeof(IReadOnlyList<>)
-                   || typeDefinition == typeof(ICollection<>)
-                   || typeDefinition == typeof(IList<>)
-                   || typeDefinition == typeof(List<>);
+                || typeDefinition == typeof(IReadOnlyCollection<>)
+                || typeDefinition == typeof(IReadOnlyList<>)
+                || typeDefinition == typeof(ICollection<>)
+                || typeDefinition == typeof(IList<>)
+                || typeDefinition == typeof(List<>);
         }
 
         /// <summary>
         /// 从目录中获取所有程序集
         /// </summary>
         /// <param name="directoryPath">目录绝对路径</param>
-        public static List<Assembly> GetAssemblies(this string directoryPath)
+        public static IEnumerable<Assembly> GetAssemblies(this string directoryPath)
         {
-            return Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories).ToList()
+            return Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories)
                 .Where(t => t.EndsWith(".exe") || t.EndsWith(".dll"))
                 .ToList(path => Assembly.Load(new AssemblyName(path)));
         }
@@ -356,9 +391,9 @@ namespace Codeping.Utils
         /// 获取公共属性列表
         /// </summary>
         /// <param name="instance">实例</param>
-        public static List<Item> GetPublicProperties(this object instance)
+        public static IEnumerable<Item> GetPublicProperties(this object instance)
         {
-            return instance.GetType().GetProperties().ToList(t => new Item(t.Name, t.GetValue(instance)));
+            return instance.Type().GetProperties().ToList(t => new Item(t.Name, t.GetValue(instance)));
         }
 
         /// <summary>

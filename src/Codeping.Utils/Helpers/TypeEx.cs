@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -64,11 +65,9 @@ namespace Codeping.Utils
         /// </summary>
         /// <typeparam name="TFind">查找类型</typeparam>
         /// <param name="assemblies">待查找的程序集列表</param>
-        public static List<Type> FindTypes<TFind>(params Assembly[] assemblies)
+        public static IEnumerable<Type> FindTypes<TFind>(params Assembly[] assemblies)
         {
-            Type findType = typeof(TFind);
-
-            return FindTypes(findType, assemblies);
+            return TypeEx.FindTypes(TypeEx.GetType<TFind>(), assemblies);
         }
 
         /// <summary>
@@ -76,16 +75,16 @@ namespace Codeping.Utils
         /// </summary>
         /// <param name="findType">查找类型</param>
         /// <param name="assemblies">待查找的程序集列表</param>
-        public static List<Type> FindTypes(Type findType, params Assembly[] assemblies)
+        public static IEnumerable<Type> FindTypes(Type findType, params Assembly[] assemblies)
         {
-            List<Type> result = new List<Type>();
+            var result = new List<Type>();
 
             foreach (Assembly assembly in assemblies)
             {
-                result.AddRange(GetTypes(findType, assembly));
+                result.AddRange(TypeEx.GetTypes(findType, assembly));
             }
 
-            return result.Distinct().ToList();
+            return result.Distinct();
         }
 
         /// <summary>
@@ -93,11 +92,9 @@ namespace Codeping.Utils
         /// </summary>
         /// <typeparam name="TInterface">接口类型</typeparam>
         /// <param name="assemblies">待查找的程序集列表</param>
-        public static List<TInterface> GetInstancesByInterface<TInterface>(params Assembly[] assemblies)
+        public static IEnumerable<TInterface> GetInstancesByInterface<TInterface>(params Assembly[] assemblies)
         {
-            return FindTypes<TInterface>(assemblies)
-                .Select(t => t.CreateInstance<TInterface>())
-                .ToList();
+            return TypeEx.FindTypes<TInterface>(assemblies).Select(x => x.CreateInstance<TInterface>());
         }
 
         /// <summary>
@@ -106,53 +103,81 @@ namespace Codeping.Utils
         /// <typeparam name="T">类型</typeparam>
         public static Type GetTopBaseType<T>()
         {
-            return typeof(T).GetTopBaseType();
+            return TypeEx.GetType<T>().GetTopBaseType();
         }
 
         /// <summary>
-        /// 获取类型列表
+        /// 获取程序集
         /// </summary>
-        private static List<Type> GetTypes(Type findType, Assembly assembly)
+        /// <param name="assemblyName">程序集名称</param>
+        public static Assembly GetAssembly(string assemblyName)
         {
-            List<Type> result = new List<Type>();
-            if (assembly == null)
-            {
-                return result;
-            }
+            return Assembly.Load(new AssemblyName(assemblyName));
+        }
 
-            Type[] types;
-            try
+        /// <summary>
+        /// 获取程序集的直接依赖程序集, 包括该程序集本身
+        /// </summary>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <returns></returns>
+        public static IEnumerable<Assembly> GetDependencyAssemblies(string assemblyName)
+        {
+            var result = new List<Assembly>();
+
+            var assembly = TypeEx.GetAssembly(assemblyName);
+
+            result.Add(assembly);
+
+            var context = DependencyContext.Load(assembly);
+
+            if (context == null)
             {
-                types = assembly.GetTypes();
-            }
-            catch (ReflectionTypeLoadException)
-            {
-                return result;
-            }
-            foreach (Type type in types)
-            {
-                AddType(result, findType, type);
+                var dependencies = context.RuntimeLibraries
+                     .SelectMany(x => x.Dependencies)
+                     .Select(x => TypeEx.GetAssembly(x.Name));
+
+                result.AddRange(dependencies);
             }
 
             return result;
         }
 
         /// <summary>
-        /// 添加类型
+        /// 获取类型列表
         /// </summary>
-        private static void AddType(List<Type> result, Type findType, Type type)
+        private static IEnumerable<Type> GetTypes(Type findType, Assembly assembly)
         {
-            if (type.IsInterface || type.IsAbstract)
+            var result = new List<Type>();
+
+            if (assembly == null)
             {
-                return;
+                return result;
             }
 
-            if (findType.IsAssignableFrom(type) == false && MatchGeneric(findType, type) == false)
+            try
             {
-                return;
-            }
+                foreach (Type type in assembly.GetTypes())
+                {
+                    if (type.IsInterface || type.IsAbstract)
+                    {
+                        continue;
+                    }
 
-            result.Add(type);
+                    if (!findType.IsAssignableFrom(type) &&
+                        !TypeEx.MatchGeneric(findType, type))
+                    {
+                        continue;
+                    }
+
+                    result.Add(type);
+                }
+
+                return result;
+            }
+            catch (ReflectionTypeLoadException)
+            {
+                return result;
+            }
         }
 
         /// <summary>
@@ -160,21 +185,23 @@ namespace Codeping.Utils
         /// </summary>
         private static bool MatchGeneric(Type findType, Type type)
         {
-            if (findType.IsGenericTypeDefinition == false)
+            if (!findType.IsGenericTypeDefinition)
             {
                 return false;
             }
 
             Type definition = findType.GetGenericTypeDefinition();
-            foreach (Type implementedInterface in type.FindInterfaces((filter, criteria) => true, null))
+
+            foreach (Type implementedInterface in type.FindInterfaces((f, c) => true, null))
             {
-                if (implementedInterface.IsGenericType == false)
+                if (!implementedInterface.IsGenericType)
                 {
                     continue;
                 }
 
                 return definition.IsAssignableFrom(implementedInterface.GetGenericTypeDefinition());
             }
+
             return false;
         }
     }
