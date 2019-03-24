@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils.TimedJob.Tests", "Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils.Tests", "Units\Utils.Tests\Utils.Tests.csproj", "{35A350B6-2360-4FB3-B6E0-E91BBF914B46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.ExcelMapper", "Codeping.Utils.ExcelMapper\Codeping.Utils.ExcelMapper.csproj", "{F02BA11B-B250-414D-91E0-D2AB34A50144}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{35A350B6-2360-4FB3-B6E0-E91BBF914B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35A350B6-2360-4FB3-B6E0-E91BBF914B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35A350B6-2360-4FB3-B6E0-E91BBF914B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F02BA11B-B250-414D-91E0-D2AB34A50144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F02BA11B-B250-414D-91E0-D2AB34A50144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F02BA11B-B250-414D-91E0-D2AB34A50144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F02BA11B-B250-414D-91E0-D2AB34A50144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
