@@ -11,26 +11,23 @@ namespace Utils.Tests
         [Fact]
         public void ToJsonTest()
         {
-            var model = new JsonTest { Id = 1, Name = "Test" };
+            var model = new Parent { Id = 1, Name = "Test" };
 
-            Assert.Equal("{\"Id\":1,\"Name\":\"Test\"}", model.ToJson());
+            Assert.Contains("'Id':1,'Name':'Test'", model.ToJson(true));
+            Assert.Contains("\"Id\":1,\"Name\":\"Test\"", model.ToJson());
+
+            model = null;
+            Assert.Equal("{}", model.ToJson());
         }
 
         [Fact]
         public void ToObjectTest()
         {
-            var model = "{\"Id\":2,\"Name\":\"Test\"}".ToObject<JsonTest>();
+            var model = "{\"Id\":2,\"Name\":\"Test\"}".ToObject<Parent>();
 
             Assert.Equal(2, model.Id);
 
             Assert.Equal("Test", model.Name);
         }
-    }
-
-    class JsonTest
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
     }
 }
