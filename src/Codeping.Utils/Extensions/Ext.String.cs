@@ -15,7 +15,7 @@ namespace Codeping.Utils
         /// <param name="chineseText">汉字文本, 范例： 中国</param>
         public static string PinYin(this string chineseText)
         {
-            if (string.IsNullOrWhiteSpace(chineseText))
+            if (chineseText.IsEmpty())
             {
                 return string.Empty;
             }
@@ -35,7 +35,7 @@ namespace Codeping.Utils
         /// <param name="value">值</param>
         public static string FirstLowerCase(this string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (value.IsEmpty())
             {
                 return string.Empty;
             }
@@ -49,7 +49,7 @@ namespace Codeping.Utils
         /// <param name="value">值</param>
         public static string FirstUpperCase(this string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (value.IsEmpty())
             {
                 return string.Empty;
             }

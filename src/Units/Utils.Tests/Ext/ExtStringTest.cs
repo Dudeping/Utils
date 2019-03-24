@@ -21,30 +21,36 @@ namespace Utils.Tests
             Assert.Equal(expected, data.PinYin());
         }
 
-        [Fact]
-        public void FirstLowerCaseTest()
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("codeping", "Codeping")]
+        [InlineData("uTILS", "UTILS")]
+        [InlineData("技术", "技术")]
+        public void FirstLowerCaseTest(string expected, string data)
         {
-            Assert.Equal("codeping", "Codeping".FirstLowerCase());
-
-            Assert.Equal("uTILS", "UTILS".FirstLowerCase());
+            Assert.Equal(expected, data.FirstLowerCase());
         }
 
-        [Fact]
-        public void FirstUpperCaseTest()
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("Codeping", "codeping")]
+        [InlineData("CODEPING", "cODEPING")]
+        [InlineData("技术", "技术")]
+        public void FirstUpperCaseTest(string expected, string data)
         {
-            Assert.Equal("Codeping", "codeping".FirstUpperCase());
-
-            Assert.Equal("CODEPING", "cODEPING".FirstUpperCase());
+            Assert.Equal(expected, data.FirstUpperCase());
         }
 
-        [Fact]
-        public void RemoveEndTest()
+        [Theory]
+        [InlineData("", "", "")]
+        [InlineData("code", "codeping", "ping")]
+        [InlineData("", "   ", " ")]
+        [InlineData("util", "utils", "s")]
+        [InlineData("lalala", "lalala", "")]
+        [InlineData("lalala", "lalala", "s")]
+        public void RemoveEndTest(string expected, string data, string remove)
         {
-            Assert.Equal("code", "codeping".RemoveEnd("ping"));
-
-            Assert.Equal("", "   ".RemoveEnd(" "));
-
-            Assert.Equal("util", "utils".RemoveEnd("s"));
+            Assert.Equal(expected, data.RemoveEnd(remove));
         }
     }
 }
