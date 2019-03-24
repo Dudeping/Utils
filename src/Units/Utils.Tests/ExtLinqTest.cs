@@ -13,11 +13,11 @@ namespace Utils.Tests
         {
             Assert.Equal("a,b", new[] { "a", "b" }.Join());
 
-            Assert.Equal("'a','b'", new[] { "a", "b" }.Join("'"));
+            Assert.Equal("'a','b'", new[] { "a", "b" }.Join(quotes: "'"));
 
-            Assert.Equal("a|b", new[] { "a", "b" }.Join(separator: "|"));
+            Assert.Equal("a|b", new[] { "a", "b" }.Join("|"));
 
-            Assert.Equal("`a`@`b`", new[] { "a", "b" }.Join("`", "@"));
+            Assert.Equal("`a`@`b`", new[] { "a", "b" }.Join("@", "`"));
         }
     }
 }
