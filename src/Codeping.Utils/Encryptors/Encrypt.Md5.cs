@@ -50,7 +50,8 @@ namespace Codeping.Utils
         /// <summary>
         /// Md5 加密
         /// </summary>
-        private static string Md5(this string value, Encoding encoding, int startIndex = 0, int? length = null)
+        private static string Md5(
+            this string value, Encoding encoding, int startIndex = 0, int? length = null)
         {
             if (value.IsEmpty())
             {
@@ -64,7 +65,9 @@ namespace Codeping.Utils
             {
                 byte[] hash = md5.ComputeHash(encoding.GetBytes(value));
 
-                result = length == null ? BitConverter.ToString(hash, startIndex) : BitConverter.ToString(hash, startIndex, length.SafeValue());
+                result = length == null 
+                    ? BitConverter.ToString(hash, startIndex) 
+                    : BitConverter.ToString(hash, startIndex, length.SafeValue());
             }
             finally
             {
