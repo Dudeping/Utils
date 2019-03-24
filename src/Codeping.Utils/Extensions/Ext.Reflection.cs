@@ -129,6 +129,7 @@ namespace Codeping.Utils
                 case MemberTypes.Property:
                     return IsBool((PropertyInfo)member);
             }
+
             return false;
         }
 
