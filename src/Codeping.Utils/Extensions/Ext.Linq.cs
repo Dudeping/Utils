@@ -16,19 +16,19 @@ namespace Codeping.Utils
         /// </summary>
         /// <typeparam name="T">集合元素类型</typeparam>
         /// <param name="source">集合</param>
-        public static List<T> RandomSort<T>(this IEnumerable<T> source)
+        public static IEnumerable<T> RandomSort<T>(this IEnumerable<T> source)
         {
             if (source == null)
             {
-                return null;
+                return Enumerable.Empty<T>();
             }
 
             List<T> list = source.ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
-                int index1 = RandomEx.GenerateInt(list.Count);
-                int index2 = RandomEx.GenerateInt(list.Count);
+                int index1 = RandomEx.GenerateInt(list.Count - 1);
+                int index2 = RandomEx.GenerateInt(list.Count - 1);
 
                 T temp = list[index1];
                 list[index1] = list[index2];
@@ -87,7 +87,19 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static List<T> ToList<T>(this IEnumerable source, Func<T, bool> predicate)
         {
-            return source.OfType<T>().Where(predicate).ToList();
+            return source.ToList<T>().Where(predicate).ToList();
+        }
+
+        /// <summary>
+        /// 转换可枚举接口为指定类型列表, 并按照条件进行筛选
+        /// </summary>
+        /// <typeparam name="T">列表元素类型</typeparam>
+        /// <param name="source">数据源</param>
+        /// <param name="predicate">筛选条件</param>
+        /// <returns></returns>
+        public static List<T> ToList<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            return source.Where(predicate).ToList();
         }
 
         /// <summary>
