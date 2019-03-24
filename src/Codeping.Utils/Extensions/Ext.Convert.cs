@@ -299,9 +299,8 @@ namespace Codeping.Utils
                 return new List<T>();
             }
 
-            string[] array = input.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
-
-            return array.Select(x => x.Cast<T>()).ToList();
+            return input.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries)
+                .ToList(x => x.Cast<T>());
         }
 
         /// <summary>

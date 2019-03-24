@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using Codeping.Utils;
+using System.Text;
 
 namespace Utils.Tests
 {
@@ -103,6 +104,8 @@ namespace Utils.Tests
 
             Assert.False("no".ToBool());
 
+            Assert.False("fail".ToBool());
+
             Assert.True("1".ToBool());
 
             Assert.True("是".ToBool());
@@ -139,6 +142,27 @@ namespace Utils.Tests
         }
 
         [Fact]
+        public void ToGuidTest()
+        {
+            var text = "{71B3CF75-569D-489F-9C5B-E237781FE494}";
+            Guid? guid = Guid.Parse(text);
+
+            Assert.Equal(guid, text.ToGuid());
+
+            Assert.Equal(default, "error".ToGuidOrNull());
+        }
+
+        [Fact]
+        public void ToBytesTest()
+        {
+            Assert.Equal(5, "bytes".ToBytes().Length);
+
+            Assert.Equal(6, "好人".ToBytes().Length);
+
+            Assert.Equal(4, "好人".ToBytes(Encoding.Unicode).Length);
+        }
+
+        [Fact]
         public void IsEmptyTest()
         {
             Assert.True("".IsEmpty());
@@ -148,11 +172,19 @@ namespace Utils.Tests
             Assert.True(((string)null).IsEmpty());
 
             Assert.False("not".IsEmpty());
+
+            Guid? guid = Guid.Empty;
+
+            Assert.True(guid.IsEmpty());
+
+            Assert.False(Guid.Parse("{CB84590F-34F9-4235-B5EF-CEAC06C792C9}").IsEmpty());
         }
 
         [Fact]
         public void ToListTest()
         {
+            Assert.Empty("".ToList<string>(","));
+
             var ints = "1,3".ToList<int>(",");
             Assert.Equal(2, ints.Count);
             Assert.Equal(1, ints[0]);
