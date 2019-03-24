@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Codeping.Utils
 {
@@ -17,18 +18,6 @@ namespace Codeping.Utils
         public static string GenerateGuid()
         {
             return Guid.NewGuid().ToString("N");
-        }
-
-        /// <summary>
-        /// 生成随机长度字符串
-        /// </summary>
-        /// <param name="maxLength">最大长度</param>
-        /// <param name="text">如果传入该参数, 则从该文本中随机抽取</param>
-        public static string GenerateString(int maxLength, string text = null)
-        {
-            int length = _rnd.Next(1, maxLength);
-
-            return RandomEx.GenerateString(length, text);
         }
 
         /// <summary>
@@ -137,7 +126,7 @@ namespace Codeping.Utils
         /// <typeparam name="TEnum">枚举类型</typeparam>
         public static TEnum GenerateEnum<TEnum>() where TEnum : Enum
         {
-            List<Item> items = EnumEx.GetItems<TEnum>();
+            List<Item> items = EnumEx.GetItems<TEnum>().ToList<Item>();
 
             int index = _rnd.Next(0, items.Count);
 
