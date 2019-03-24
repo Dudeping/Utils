@@ -171,24 +171,24 @@ namespace Codeping.Utils
         /// 获取 Unix 时间戳
         /// </summary>
         /// <param name="time">时间</param>
-        public static long GetUnixTimestamp(this DateTime time, bool hasMs = false)
+        public static long Timestamp(this DateTime time, bool hasMs = false)
         {
             DateTime start = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
 
             long ticks = (time - start.Add(new TimeSpan(8, 0, 0))).Ticks;
 
-            return (ticks / TimeSpan.TicksPerSecond).ToLong();
+            return hasMs ? ticks : (ticks / TimeSpan.TicksPerSecond);
         }
 
         /// <summary>
         /// 从 Unix 时间戳获取时间
         /// </summary>
         /// <param name="timestamp"> Unix 时间戳</param>
-        public static DateTime GetTimeFromUnixTimestamp(this long timestamp, bool hasMs = false)
+        public static DateTime ToDataTime(this long timestamp, bool hasMs = false)
         {
             DateTime start = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
 
-            TimeSpan span = new TimeSpan(long.Parse(timestamp + "0000000"));
+            TimeSpan span = new TimeSpan(long.Parse(timestamp + (!hasMs ? "0000000" : "")));
 
             return start.Add(span).Add(new TimeSpan(8, 0, 0));
         }

@@ -27,7 +27,7 @@ namespace Utils.Tests
 
             Assert.Equal("2019-01-01", dateTime.ToDateString());
 
-            Assert.Empty(((DateTime?)null).ToDateTimeString());
+            Assert.Empty(((DateTime?)null).ToDateString());
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace Utils.Tests
 
             Assert.Equal("2019-01-01 10:10:10.999", dateTime.ToMillisecondString());
 
-            Assert.Empty(((DateTime?)null).ToDateTimeString());
+            Assert.Empty(((DateTime?)null).ToMillisecondString());
         }
 
         [Fact]
@@ -78,18 +78,23 @@ namespace Utils.Tests
             var timeSpan = TimeSpan.Parse("10:10:10.999");
 
             Assert.Equal("10小时10分10秒999毫秒", timeSpan.Description());
+
+            var dateTime = DateTime.Now;
+
+            Assert.Equal("1天", (dateTime.AddDays(1) - dateTime).Description());
         }
 
         [Fact]
-        public void GetUnixTimestampTest()
+        public void UnixTimestampTest()
         {
+            var dateTime = DateTime.Parse("2019-01-01 10:10:10");
 
-        }
+            Assert.Equal(1546308610, dateTime.Timestamp());
+            Assert.Equal(15463086100000000, dateTime.Timestamp(true));
 
-        [Fact]
-        public void GetTimeFromUnixTimestamp()
-        {
+            Assert.Equal(dateTime, ((long)1546308610).ToDataTime());
 
+            Assert.Equal(dateTime, 15463086100000000.ToDataTime(true));
         }
     }
 }
