@@ -25,6 +25,8 @@ namespace Utils.Tests.Ex
 
             Assert.Equal(FileAttributes.Hidden, File.GetAttributes(fullPath));
 
+            File.SetAttributes(directory, FileAttributes.Hidden);
+
             Assert.Equal("hello", File.ReadAllText(fullPath));
 
             FileEx.WriteHideFile(fullPath, "edit");
@@ -40,6 +42,8 @@ namespace Utils.Tests.Ex
 
             FileEx.WriteHideFile(fullPath, "你好", Encoding.GetEncoding("gbk"));
 
+            File.SetAttributes(directory, FileAttributes.Hidden);
+
             Assert.NotEqual("你好", File.ReadAllText(fullPath));
 
             Assert.Equal("你好", File.ReadAllText(fullPath, Encoding.GetEncoding("gbk")));
@@ -51,45 +55,59 @@ namespace Utils.Tests.Ex
             Assert.Equal("修改", File.ReadAllText(fullPath, Encoding.GetEncoding("gbk")));
         }
 
-        [Fact]
-        public void GetRelativePathTest()
+        [Theory]
+        [InlineData("", "", "")]
+        [InlineData(@"c:\a\", "", "")]
+        [InlineData(@"c:\a\", @"c:\a\b", "b")]
+        [InlineData(@"c:\a\", @"c:\a.txt", @"..\a.txt")]
+        [InlineData(@"c:\a\", @"d:\a.txt", @"d:\a.txt")]
+        [InlineData(@"c:\a.txt", @"c:\a.txt", @"c:\a.txt")]
+        public void GetRelativePathTest(
+            string rootPath, string fullPath, string relativePath)
         {
-            string rootPath = @"c:\a\";
-            string fullPath = @"c:\a\b";
-            Assert.Equal("b", FileEx.GetRelativePath(rootPath, fullPath));
+            Assert.Equal(relativePath, FileEx.GetRelativePath(rootPath, fullPath));
+        }
 
-            rootPath = @"c:\a\";
-            fullPath = @"c:\a.txt";
-            Assert.Equal(@"..\a.txt", FileEx.GetRelativePath(rootPath, fullPath));
-
-            rootPath = @"c:\a\";
-            fullPath = @"d:\a.txt";
-            Assert.Equal(fullPath, FileEx.GetRelativePath(rootPath, fullPath));
-
-            rootPath = fullPath = @"c:\a.txt";
-            Assert.Equal(fullPath, FileEx.GetRelativePath(rootPath, fullPath));
-
-            Assert.Equal("", FileEx.GetRelativePath(rootPath, ""));
+        [Theory]
+        [InlineData("", "", "")]
+        [InlineData(@"c:\a\", @"c:\a\", @"c:\a\")]
+        [InlineData(@"c:\a.txt", "", @"c:\a.txt")]
+        [InlineData(@"c:\a\", @"d:\a.txt", @"d:\a.txt")]
+        [InlineData(@"c:\a\", @"b.txt", @"c:\a\b.txt")]
+        [InlineData(@"c:\a\b", @"..\a.txt", @"c:\a\a.txt")]
+        public void GetAbsolutePathTest(
+            string rootPath, string relativePath, string fullPath)
+        {
+            Assert.Equal(fullPath, FileEx.GetAbsolutePath(rootPath, relativePath));
         }
 
         [Fact]
-        public void GetAbsolutePathTest()
+        public void GetSize()
         {
-            string rootPath = @"c:\a\";
-            string relativePath = @"b.txt";
-            Assert.Equal(@"c:\a\b.txt", FileEx.GetAbsolutePath(rootPath, relativePath));
+            Assert.Equal(1000, FileEx.GetSize(1000, FileSizeUnit.B));
+            Assert.Equal(1024000, FileEx.GetSize(1000, FileSizeUnit.K));
 
-            rootPath = @"c:\a\b";
-            relativePath = @"..\a.txt";
-            Assert.Equal(@"c:\a\a.txt", FileEx.GetAbsolutePath(rootPath, relativePath));
+            Assert.Equal(1024 * 1024, FileEx.GetSize(1, FileSizeUnit.M));
+            Assert.Equal(1024 * 1024 * 1024, FileEx.GetSize(1, FileSizeUnit.G));
+        }
 
-            rootPath = @"c:\a\";
-            relativePath = @"d:\a.txt";
-            Assert.Equal(relativePath, FileEx.GetAbsolutePath(rootPath, relativePath));
+        [Fact]
+        public void GetFileSize()
+        {
+            var fullPath = Path.GetFullPath("test\\test.txt");
 
-            Assert.Equal(@"c:\a\", FileEx.GetAbsolutePath(rootPath, ""));
+            var directory = Path.GetDirectoryName(fullPath);
 
-            Assert.Equal("", FileEx.GetAbsolutePath("", ""));
+            if (Directory.Exists(directory))
+            {
+                Directory.Delete(directory, true);
+            }
+
+            FileEx.WriteHideFile(fullPath, "hello");
+
+            File.SetAttributes(directory, FileAttributes.Hidden);
+
+            Assert.Equal(5, FileEx.GetSize(fullPath).GetSize());
         }
     }
 }

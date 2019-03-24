@@ -11,7 +11,7 @@ namespace Codeping.Utils
         /// 字节
         /// </summary>
         [Description("B")]
-        Byte, 
+        B, 
         /// <summary>
         /// K字节
         /// </summary>

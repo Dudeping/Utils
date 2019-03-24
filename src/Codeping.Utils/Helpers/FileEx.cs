@@ -149,5 +149,39 @@ namespace Codeping.Utils
 
             return info.FullName;
         }
+
+        /// <summary>
+        ///换算文件大小
+        /// </summary>
+        /// <param name="size">大小</param>
+        /// <param name="unit">计量单位</param>
+        /// <returns></returns>
+        public static long GetSize(long size, FileSizeUnit unit)
+        {
+            switch (unit)
+            {
+                case FileSizeUnit.K:
+                    return size * 1024;
+                case FileSizeUnit.M:
+                    return size * 1024 * 1024;
+                case FileSizeUnit.G:
+                    return size * 1024 * 1024 * 1024;
+                default:
+                    return size;
+            }
+        }
+
+        /// <summary>
+        /// 获取文件大小
+        /// </summary>
+        /// <param name="size">长度</param>
+        /// <param name="unit">计量单位</param>
+        /// <returns></returns>
+        public static FileSize GetSize(string fullPath)
+        {
+            var info = new FileInfo(fullPath);
+
+            return new FileSize(info.Exists ? info.Length : 0);
+        }
     }
 }
