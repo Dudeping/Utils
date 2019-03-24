@@ -20,9 +20,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commons\**" />
+    <Compile Remove="Encryptors\**" />
+    <Compile Remove="Expressions\**" />
+    <EmbeddedResource Remove="Commons\**" />
+    <EmbeddedResource Remove="Encryptors\**" />
+    <EmbeddedResource Remove="Expressions\**" />
+    <None Remove="Commons\**" />
+    <None Remove="Encryptors\**" />
+    <None Remove="Expressions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Encryptors\Encrypt.Md5.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspectCore.Core" Version="1.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
