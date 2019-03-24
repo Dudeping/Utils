@@ -30,17 +30,25 @@ namespace Codeping.Utils
         /// <param name="instance">成员所在的类实例</param>
         public static object GetPropertyValue([NotNull]this MemberInfo member, [NotNull]object instance)
         {
-            return member.GetPropertyValue(instance);
-            return instance.GetType().GetProperty(member.Name)?.GetValue(instance);
+            return instance.Type().GetProperty(member.Name)?.GetValue(instance);
         }
 
         /// <summary>
         /// 获取类型
         /// </summary>
         /// <param name="type">类型</param>
-        public static Type GetType(this Type type)
+        public static Type PureType(this Type type)
         {
             return Nullable.GetUnderlyingType(type) ?? type;
+        }
+
+        /// <summary>
+        /// 获取类型
+        /// </summary>
+        /// <param name="type">类型</param>
+        public static Type Type(this object obj)
+        {
+            return obj.GetType().PureType();
         }
 
         /// <summary>

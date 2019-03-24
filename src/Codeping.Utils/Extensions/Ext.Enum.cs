@@ -16,7 +16,7 @@ namespace Codeping.Utils
         /// <param name="instance">枚举实例</param>
         public static string Name(this Enum instance)
         {
-            return EnumEx.GetName(instance.GetType(), instance);
+            return EnumEx.GetName(instance.Type(), instance);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Codeping.Utils
         /// <param name="instance">枚举实例</param>
         public static int Value(this Enum instance)
         {
-            return EnumEx.GetValue(instance.GetType(), instance);
+            return EnumEx.GetValue(instance.Type(), instance);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Codeping.Utils
         /// <param name="instance">枚举实例</param>
         public static string Description(this Enum instance)
         {
-            var type = instance.GetType();
+            var type = instance.Type();
 
             return type.GetDescription(EnumEx.GetName(type, instance));
         }

@@ -19,7 +19,7 @@ namespace Codeping.Utils
         /// <typeparam name="T">类型</typeparam>
         public static Type GetType<T>()
         {
-            return typeof(T);
+            return typeof(T).PureType();
         }
 
         /// <summary>
