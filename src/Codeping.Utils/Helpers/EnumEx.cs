@@ -12,7 +12,7 @@ namespace Codeping.Utils
         /// 获取项集合, 文本设置为 Description, 值为 Value
         /// </summary>
         /// <typeparam name="TEnum">枚举类型</typeparam>
-        public static List<Item> GetItems<TEnum>() where TEnum : Enum
+        public static IEnumerable<Item> GetItems<TEnum>() where TEnum : Enum
         {
             Type type = TypeEx.GetType<TEnum>();
 
@@ -46,7 +46,7 @@ namespace Codeping.Utils
 
             var type = TypeEx.GetType<TEnum>();
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (value.IsEmpty())
             {
                 if (type.IsGenericType)
                 {
@@ -93,7 +93,7 @@ namespace Codeping.Utils
         {
             string value = member.SafeString();
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (value.IsEmpty())
             {
                 throw new ArgumentNullException(nameof(member));
             }

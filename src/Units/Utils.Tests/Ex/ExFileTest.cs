@@ -5,7 +5,7 @@ using Xunit;
 using Codeping.Utils;
 using System.IO;
 
-namespace Utils.Tests.Ex
+namespace Utils.Tests
 {
     public class ExFileTest
     {
