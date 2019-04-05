@@ -14,7 +14,7 @@
     <Version>0.0.1-alpha</Version>
     <Description>该项目用于快速开发简单的 asp.net core 的后台定时任务。</Description>
     <PackageReleaseNotes>初版发布, 功能可用.</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
     <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/TimedJob.ico</PackageIconUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <LangVersion>8.0</LangVersion>
@@ -22,19 +22,18 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="2.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview3-27503-5" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0-preview3.19153.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Codeping.Utils\Codeping.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

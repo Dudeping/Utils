@@ -12,24 +12,29 @@ namespace Codeping.Utils.TimedJob
 {
     internal class TimedJobService : BackgroundService
     {
-        private readonly IAssemblyLocator _locator;
+        private readonly IHostEnvironment _host;
         private readonly IServiceProvider _services;
         private readonly ICollection<Timer> _timers;
         private readonly IDictionary<string, bool> _status;
 
-        public TimedJobService(IAssemblyLocator locator, IServiceProvider services)
+        public TimedJobService(IServiceProvider services)
         {
-            _locator = locator;
             _services = services;
             _timers = new List<Timer>();
             _status = new Dictionary<string, bool>();
+            _host = services.GetService<IHostEnvironment>();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var jobs = _locator.GetAssemblies()
-                .SelectMany(asm => asm.DefinedTypes.Where(x => typeof(IJob).IsAssignableFrom(x))
-                    .SelectMany(x => x.DeclaredMethods.Where(y => y.GetCustomAttribute<InvokeAttribute>() != null)));
+            var assembly = this.GetType().Assembly;
+
+            var assemblies = TypeEx.GetDependencyAssemblies(_host.ApplicationName)
+                .Where(x => x.IsDependency(assembly));
+
+            var types = TypeEx.FindTypes<IJob>(assemblies.ToArray()).Select(x => x.GetTypeInfo());
+
+            var jobs = types.SelectMany(x => x.DeclaredMethods.Where(d => d.GetCustomAttribute<InvokeAttribute>() != null));
 
             foreach (MethodInfo method in jobs)
             {
@@ -48,7 +53,7 @@ namespace Codeping.Utils.TimedJob
                 await Task.Run(delegate
                 {
                     Timer timer = new Timer(
-                        x => this.Process(method, invoke), null, delay, interval);
+                     x => this.Process(method, invoke), null, delay, interval);
 
                     _timers.Add(timer);
                 });
@@ -85,7 +90,12 @@ namespace Codeping.Utils.TimedJob
                         .Select(x => this.MatchParameter(x, scope))
                         .ToArray();
 
-                    method.Invoke(job, args);
+                    var result = method.Invoke(job, args);
+
+                    if (result is Task task)
+                    {
+                        task.Wait();
+                    }
                 }
                 catch (Exception ex)
                 {
