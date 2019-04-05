@@ -38,7 +38,7 @@
   <ItemGroup>
     <PackageReference Include="AspectCore.Core" Version="1.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.6.0-preview3.19128.7" />
   </ItemGroup>
 
   <ItemGroup>
