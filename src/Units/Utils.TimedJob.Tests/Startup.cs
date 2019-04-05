@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,7 +11,10 @@ namespace Utils.TimedJob.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTimedJob();
+            services.AddTimedJob(option =>
+            {
+                option.UseDb<DbContext>();
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
