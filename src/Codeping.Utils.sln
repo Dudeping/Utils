@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils.Tests", "Units\Utils.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.ExcelMapper", "Codeping.Utils.ExcelMapper\Codeping.Utils.ExcelMapper.csproj", "{F02BA11B-B250-414D-91E0-D2AB34A50144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.TimedJob.Tests", "Units\Utils.TimedJob.Tests\Utils.TimedJob.Tests.csproj", "{65481257-ED05-403F-8157-FDA68034469F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils.TimedJob.Tests", "Units\Utils.TimedJob.Tests\Utils.TimedJob.Tests.csproj", "{65481257-ED05-403F-8157-FDA68034469F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.WeChat.Reply", "Codeping.Utils.WeChat.Reply\Codeping.Utils.WeChat.Reply.csproj", "{2703F291-4954-44D6-8330-1EEF90587B55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{65481257-ED05-403F-8157-FDA68034469F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65481257-ED05-403F-8157-FDA68034469F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65481257-ED05-403F-8157-FDA68034469F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2703F291-4954-44D6-8330-1EEF90587B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2703F291-4954-44D6-8330-1EEF90587B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2703F291-4954-44D6-8330-1EEF90587B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2703F291-4954-44D6-8330-1EEF90587B55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
