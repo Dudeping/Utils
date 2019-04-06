@@ -28,8 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Codeping.Utils.Silly\Codeping.Utils.Silly.csproj" />
-    <ProjectReference Include="..\Codeping.Utils.TimedJob\Codeping.Utils.TimedJob.csproj" />
-    <ProjectReference Include="..\Codeping.Utils.WeChat\Codeping.Utils.WeChat.csproj" />
     <ProjectReference Include="..\Codeping.Utils\Codeping.Utils.csproj" />
   </ItemGroup>
 
