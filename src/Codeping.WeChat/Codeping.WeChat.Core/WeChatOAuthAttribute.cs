@@ -14,7 +14,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Codeping.Utils.WeChat
+namespace Codeping.WeChat.Core
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class WeChatOAuthAttribute : AuthorizeAttribute, IAsyncAuthorizationFilter
