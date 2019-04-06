@@ -80,6 +80,13 @@ namespace Codeping.Utils
             return this.SetValue(default);
         }
 
+        public new Result<TValue> Merge(Result result)
+        {
+            base.Merge(result);
+
+            return this;
+        }
+
         public Result<TValue> Merge(Result<TValue> result)
         {
             base.Merge(result);
