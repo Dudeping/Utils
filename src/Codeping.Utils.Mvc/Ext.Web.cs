@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Text;
 
-namespace Codeping.Utils
+namespace Codeping.Utils.Mvc
 {
     public static partial class Ext
     {
@@ -15,6 +15,11 @@ namespace Codeping.Utils
                 Content = $"<script>alert('{text}'); location.href='{url}';</script>",
                 ContentType = "text/html",
             };
+        }
+
+        public static ContentResult Message(this IFilterMetadata page, Result result, string successUrl, string failUrl)
+        {
+            return page.Message(result.Succeeded ? result.ErrorMessage : "操作成功!", result.Succeeded ? failUrl : successUrl);
         }
 
         public static ContentResult Message(this ControllerBase controller, string text, string url)

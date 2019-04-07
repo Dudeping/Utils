@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Codeping.Utils
+namespace Codeping.Utils.Mvc
 {
     /// <summary>
     /// 系统扩展 - Http 上下文
@@ -31,7 +31,7 @@ namespace Codeping.Utils
         /// <param name="name">文件提交表单项名</param>
         /// <param name="rootDir">保存的根路径</param>
         /// <returns></returns>
-        public static string SaveFileTo(this HttpRequest request, string name, string rootDir)
+        public static string SaveFileAs(this HttpRequest request, string name, string rootDir)
         {
             IFormFile file = request.Form.Files.GetFile(name);
 
