@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.4-alpha</Version>
+    <Version>0.0.3-alpha</Version>
     <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/Utils.ico</PackageIconUrl>
     <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
@@ -16,7 +16,7 @@
     <Authors>codeping</Authors>
     <Company>codeping</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>添加</PackageReleaseNotes>
+    <PackageReleaseNotes>添加嵌入静态资源提供程序配置基类。</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
