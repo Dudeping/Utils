@@ -73,5 +73,50 @@ namespace Codeping.Utils
                 return default;
             }
         }
+
+        /// <summary>
+        /// 改变对象的类型
+        /// </summary>
+        /// <param name="input">要操作的对象</param>
+        /// <param name="type">要更改到的类型</param>
+        /// <returns></returns>
+        public static object ChangeType(this object input, Type type)
+        {
+            if (input is string str && str.IsEmpty())
+            {
+                return default;
+            }
+
+            string typeName = type.Name.ToLower();
+
+            try
+            {
+                if (typeName == "string")
+                {
+                    return (object)input.ToString();
+                }
+
+                if (typeName == "guid")
+                {
+                    return (object)new Guid(input.ToString());
+                }
+
+                if (type.IsEnum)
+                {
+                    return Enum.Parse(type, input.SafeString(), true);
+                }
+
+                if (input is IConvertible)
+                {
+                    return Convert.ChangeType(input, type);
+                }
+
+                return input;
+            }
+            catch
+            {
+                return default;
+            }
+        }
     }
 }

@@ -64,6 +64,27 @@ namespace Codeping.Utils
         }
 
         /// <summary>
+        /// 是否是元组类型
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static bool IsTupleType(this Type type)
+        {
+            switch (type.GetGenericArguments().Length)
+            {
+                case 1: return type.GetGenericTypeDefinition() == typeof(Tuple<>);
+                case 2: return type.GetGenericTypeDefinition() == typeof(Tuple<,>);
+                case 3: return type.GetGenericTypeDefinition() == typeof(Tuple<,,>);
+                case 4: return type.GetGenericTypeDefinition() == typeof(Tuple<,,,>);
+                case 5: return type.GetGenericTypeDefinition() == typeof(Tuple<,,,,>);
+                case 6: return type.GetGenericTypeDefinition() == typeof(Tuple<,,,,,>);
+                case 7: return type.GetGenericTypeDefinition() == typeof(Tuple<,,,,,,>);
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 是否直接依赖于指定程序集
         /// </summary>
         /// <param name="assembly">程序集</param>
