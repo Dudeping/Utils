@@ -14,7 +14,7 @@
     <Version>0.0.1-alpha</Version>
     <Description>该项目用于快速开发简单的 asp.net core 的后台定时任务。</Description>
     <PackageReleaseNotes>初版发布, 功能可用.</PackageReleaseNotes>
-    <PackageLicenseFile></PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/TimedJob.ico</PackageIconUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <LangVersion>8.0</LangVersion>
@@ -29,11 +29,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\..\Codeping.Utils\Codeping.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Codeping.Utils\Codeping.Utils.csproj" />
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
