@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Codeping.Utils\Codeping.Utils.csproj" />
+    <ProjectReference Include="..\Codeping.Agile.Core\Codeping.Agile.Core.csproj" />
   </ItemGroup>
 
 </Project>
