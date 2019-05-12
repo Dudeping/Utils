@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
-using System;
 
 namespace Codeping.Utils.Mvc
 {
     /// <summary>
-    /// 嵌入资源提供程序配置选项, 将指定嵌入资源的以作为文件提供程序
-    /// 使用：services.ConfigureOptions<GinkUIConfigureOptions>();
+    /// 嵌入资源提供程序配置选项, 将指定嵌入的资源以作为文件提供程序
+    /// 使用：services.ConfigureOptions<T>();
     /// 注意：一定要在 AddMvc 之前注入!
     /// </summary>
     public abstract class ManifestEmbeddedFileProviderConfigureOptions : IPostConfigureOptions<StaticFileOptions>
