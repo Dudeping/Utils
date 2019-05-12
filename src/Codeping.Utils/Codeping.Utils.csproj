@@ -23,12 +23,18 @@
     <Compile Remove="Commons\**" />
     <Compile Remove="Encryptors\**" />
     <Compile Remove="Expressions\**" />
+    <Compile Remove="Helpers\ConsoleEx\bin\**" />
+    <Compile Remove="Helpers\ConsoleEx\obj\**" />
     <EmbeddedResource Remove="Commons\**" />
     <EmbeddedResource Remove="Encryptors\**" />
     <EmbeddedResource Remove="Expressions\**" />
+    <EmbeddedResource Remove="Helpers\ConsoleEx\bin\**" />
+    <EmbeddedResource Remove="Helpers\ConsoleEx\obj\**" />
     <None Remove="Commons\**" />
     <None Remove="Encryptors\**" />
     <None Remove="Expressions\**" />
+    <None Remove="Helpers\ConsoleEx\bin\**" />
+    <None Remove="Helpers\ConsoleEx\obj\**" />
   </ItemGroup>
 
   <ItemGroup>
