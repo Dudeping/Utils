@@ -1,23 +1,25 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Senparc.CO2NET.Extensions;
 using Senparc.Weixin;
 using Senparc.Weixin.MP;
 using Senparc.Weixin.MP.AdvancedAPIs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Codeping.WeChat.Core
 {
+    /// <summary>
+    /// 微信授权属性
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class WeChatOAuthAttribute : AuthorizeAttribute, IAsyncAuthorizationFilter
+    public class WeChatOAuthAttribute : Attribute, IAsyncAuthorizationFilter
     {
         private const string STATUS = "Codeping.Utils.Wechat";
         private const string COOKIE_NAME = "Codeping.Utils.Wechat.RedirectUrl";
@@ -42,7 +44,7 @@ namespace Codeping.WeChat.Core
             {
                 context.Result = new ContentResult()
                 {
-                    Content = "不支持除微信浏览器以外的请求!", 
+                    Content = "不支持除微信浏览器以外的请求!",
                 };
                 return;
             }
@@ -50,11 +52,14 @@ namespace Codeping.WeChat.Core
             if (!string.IsNullOrEmpty(code) && !string.IsNullOrEmpty(state))
             {
                 var redirectUrl = context.HttpContext.Request.Cookies[COOKIE_NAME];
-                if (string.IsNullOrEmpty(redirectUrl)) return;
+                if (string.IsNullOrEmpty(redirectUrl))
+                {
+                    return;
+                }
 
                 if (this.IsOnlyGetOpenId)
                 {
-                    var result = OAuthApi.GetAccessToken(_appId, _secret, code);
+                    Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthAccessTokenResult result = OAuthApi.GetAccessToken(_appId, _secret, code);
 
                     if (result.errcode != 0)
                     {
@@ -117,8 +122,8 @@ namespace Codeping.WeChat.Core
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, openid), 
-                    new Claim(ClaimTypes.Role, "WeChat"), 
+                    new Claim(ClaimTypes.Name, openid),
+                    new Claim(ClaimTypes.Role, "WeChat"),
                 };
 
                 var identity = new ClaimsIdentity(claims, WeChatAuthenticationDefaults.AuthenticationScheme);
