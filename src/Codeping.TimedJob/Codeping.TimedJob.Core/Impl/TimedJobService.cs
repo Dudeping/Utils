@@ -43,7 +43,10 @@ namespace Codeping.TimedJob.Core
 
                 InvokeAttribute invoke = method.GetCustomAttribute<InvokeAttribute>();
 
-                if (invoke == null || !invoke.IsEnabled) continue;
+                if (invoke == null || !invoke.IsEnabled)
+                {
+                    continue;
+                }
 
                 TimeSpan delay = invoke.Begin - DateTime.Now;
 
@@ -70,42 +73,40 @@ namespace Codeping.TimedJob.Core
                 return;
             }
 
-            using (IServiceScope scope = _services.CreateScope())
-            {
-                var logger = scope.ServiceProvider.GetService<ILogger<TimedJobService>>();
+            using IServiceScope scope = _services.CreateScope();
+            var logger = scope.ServiceProvider.GetService<ILogger<TimedJobService>>();
 
-                var args = method.DeclaringType
-                    .GetConstructors().First().GetParameters()
+            var args = method.DeclaringType
+                .GetConstructors().First().GetParameters()
+                .Select(x => this.MatchParameter(x, scope))
+                .ToArray();
+
+            var job = Activator.CreateInstance(method.DeclaringType, args);
+
+            try
+            {
+                logger?.LogInformation($"Invoking {identifier}...");
+
+                _status[identifier] = true;
+
+                args = method.GetParameters()
                     .Select(x => this.MatchParameter(x, scope))
                     .ToArray();
 
-                var job = Activator.CreateInstance(method.DeclaringType, args);
+                var result = method.Invoke(job, args);
 
-                try
+                if (result is Task task)
                 {
-                    logger?.LogInformation($"Invoking {identifier}...");
-
-                    _status[identifier] = true;
-
-                    args = method.GetParameters()
-                        .Select(x => this.MatchParameter(x, scope))
-                        .ToArray();
-
-                    var result = method.Invoke(job, args);
-
-                    if (result is Task task)
-                    {
-                        task.Wait();
-                    }
+                    task.Wait();
                 }
-                catch (Exception ex)
-                {
-                    logger?.LogError(ex.ToString());
-                }
-                finally
-                {
-                    _status[identifier] = false;
-                }
+            }
+            catch (Exception ex)
+            {
+                logger?.LogError(ex.ToString());
+            }
+            finally
+            {
+                _status[identifier] = false;
             }
         }
 

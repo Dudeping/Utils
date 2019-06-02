@@ -28,22 +28,20 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using (StreamReader sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream))
+            using StreamReader sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream);
+            if (stream.CanSeek)
             {
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                string result = sr.ReadToEnd();
-
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                return result;
+                stream.Seek(0, SeekOrigin.Begin);
             }
+
+            string result = sr.ReadToEnd();
+
+            if (stream.CanSeek)
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -67,22 +65,20 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using (StreamReader sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream))
+            using StreamReader sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream);
+            if (stream.CanSeek)
             {
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                string result = await sr.ReadToEndAsync();
-
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                return result;
+                stream.Seek(0, SeekOrigin.Begin);
             }
+
+            string result = await sr.ReadToEndAsync();
+
+            if (stream.CanSeek)
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -104,30 +100,28 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using (MemoryStream ms = new MemoryStream())
-            using (StreamReader sr = new StreamReader(ms, encoding, !isCloseStream))
+            using MemoryStream ms = new MemoryStream();
+            using StreamReader sr = new StreamReader(ms, encoding, !isCloseStream);
+            if (stream.CanSeek)
             {
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                stream.CopyTo(ms);
-
-                if (ms.CanSeek)
-                {
-                    ms.Seek(0, SeekOrigin.Begin);
-                }
-
-                string result = sr.ReadToEnd();
-
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                return result;
+                stream.Seek(0, SeekOrigin.Begin);
             }
+
+            stream.CopyTo(ms);
+
+            if (ms.CanSeek)
+            {
+                ms.Seek(0, SeekOrigin.Begin);
+            }
+
+            string result = sr.ReadToEnd();
+
+            if (stream.CanSeek)
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -149,30 +143,28 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using (MemoryStream ms = new MemoryStream())
-            using (StreamReader sr = new StreamReader(ms, encoding, !isCloseStream))
+            using MemoryStream ms = new MemoryStream();
+            using StreamReader sr = new StreamReader(ms, encoding, !isCloseStream);
+            if (stream.CanSeek)
             {
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                stream.CopyTo(ms);
-
-                if (ms.CanSeek)
-                {
-                    ms.Seek(0, SeekOrigin.Begin);
-                }
-
-                string result = await sr.ReadToEndAsync();
-
-                if (stream.CanSeek)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                }
-
-                return result;
+                stream.Seek(0, SeekOrigin.Begin);
             }
+
+            stream.CopyTo(ms);
+
+            if (ms.CanSeek)
+            {
+                ms.Seek(0, SeekOrigin.Begin);
+            }
+
+            string result = await sr.ReadToEndAsync();
+
+            if (stream.CanSeek)
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return result;
         }
     }
 }

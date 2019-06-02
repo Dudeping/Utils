@@ -112,7 +112,10 @@ namespace Codeping.Utils
             result.AppendFormat("{0}年{1}月{2}日", dateTime.Year, dateTime.Month, dateTime.Day);
             result.AppendFormat(" {0}时{1}分", dateTime.Hour, dateTime.Minute);
 
-            if (isRemoveSecond == false) result.AppendFormat("{0}秒", dateTime.Second);
+            if (isRemoveSecond == false)
+            {
+                result.AppendFormat("{0}秒", dateTime.Second);
+            }
 
             return result.ToString();
         }

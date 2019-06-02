@@ -19,7 +19,7 @@ namespace Codeping.Utils
         /// </summary>
         /// <param name="method">方法信息</param>
         /// <returns></returns>
-        public static string GetFullName([NotNull]this MethodInfo method)
+        public static string GetFullName([NotNull]this MethodBase method)
         {
             return $"{method.DeclaringType.FullName}.{method.Name}";
         }
