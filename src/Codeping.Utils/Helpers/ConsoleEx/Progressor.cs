@@ -93,7 +93,7 @@ namespace Codeping.Utils
             }
 
             return style.Length > 2
-                ? style.Substring(^2)
+                ? style.Substring(style.Length - 2)
                 : style;
         }
     }
