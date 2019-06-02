@@ -10,6 +10,51 @@ namespace Codeping.Utils
     public static partial class Ext
     {
         /// <summary>
+        /// 按照指定的分隔符分割字符串, 并丢掉空节点
+        /// </summary>
+        /// <param name="str">要分割的字符串</param>
+        /// <param name="separator">指定的分隔符</param>
+        /// <returns></returns>
+        public static string[] SplitWhitoutEmpty(this string str, params char[] separator)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+            {
+                return new string[0];
+            }
+
+            if (separator == null || separator.Length == 0)
+            {
+                return new[] { str };
+            }
+
+            return str.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        /// <summary>
+        /// 修正字符串分隔符
+        /// </summary>
+        /// <param name="str">要修正的字符串</param>
+        /// <param name="separator">修正后的分隔符</param>
+        /// <param name="oldSeparator">修正前的分隔符</param>
+        /// <returns></returns>
+        public static string CorrectSplitChar(this string str, char separator, params char[] oldSeparator)
+        {
+            var attrs = str.SplitWhitoutEmpty(oldSeparator);
+
+            return string.Join(separator, attrs);
+        }
+
+        /// <summary>
+        /// 修正分号分隔符
+        /// </summary>
+        /// <param name="str">要修正的字符串</param>
+        /// <returns></returns>
+        public static string CorrectQuotes(this string str)
+        {
+            return str.CorrectSplitChar(';', new[] { ';', '；' });
+        }
+
+        /// <summary>
         /// 获取汉字的拼音简码, 即首字母缩写, 范例：中国, 返回 zg
         /// </summary>
         /// <param name="chineseText">汉字文本, 范例： 中国</param>
@@ -95,7 +140,7 @@ namespace Codeping.Utils
                 return txt;
             }
 
-            ushort unicode = (ushort)(charBytes[0] * 256 + charBytes[1]);
+            ushort unicode = (ushort)((charBytes[0] * 256) + charBytes[1]);
             string pinYin = unicode.ResolveByCode();
             if (!pinYin.IsEmpty())
             {
