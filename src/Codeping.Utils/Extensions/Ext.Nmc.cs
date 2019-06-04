@@ -115,7 +115,7 @@ namespace Codeping.Utils
 
                 string area = areas[6];
 
-                MatchCollection lis = Regex.Matches(area, "<li>(.*?)</li>", RegexOptions.Singleline);
+                MatchCollection lis = Regex.Matches(area, "<li[^>]*>(.*?)</li>", RegexOptions.Singleline);
 
                 Forecast forecast = new Forecast() { Title = title };
 
