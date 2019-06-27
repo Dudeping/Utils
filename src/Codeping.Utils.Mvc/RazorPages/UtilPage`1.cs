@@ -40,7 +40,7 @@ namespace Codeping.Utils.Mvc
             return this.Page();
         }
 
-        protected IActionResult InvokeUpdate(string url)
+        protected IActionResult InvokeUpdate(string url, string notFoundText)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Codeping.Utils.Mvc
             }
             catch (DbUpdateConcurrencyException) when (!this.Exists(this.Entry.Id))
             {
-                return this.Message("找不到该客户!", url);
+                return this.Message(notFoundText, url);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace Codeping.Utils.Mvc
             }
         }
 
-        protected async Task<IActionResult> InvokeUpdateAsync(string url)
+        protected async Task<IActionResult> InvokeUpdateAsync(string url, string notFoundText)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Codeping.Utils.Mvc
             }
             catch (DbUpdateConcurrencyException) when (!this.Exists(this.Entry.Id))
             {
-                return this.Message("找不到该客户!", url);
+                return this.Message(notFoundText, url);
             }
             catch (Exception ex)
             {
