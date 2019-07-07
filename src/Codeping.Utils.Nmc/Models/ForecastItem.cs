@@ -1,4 +1,4 @@
-﻿namespace Codeping.Utils
+﻿namespace Codeping.Utils.Nmc
 {
     /// <summary>
     /// 城市天气内容项
@@ -14,6 +14,11 @@
         /// 天气页
         /// </summary>
         public string Url { get; set; }
+
+        /// <summary>
+        /// 移动端天气页
+        /// </summary>
+        public string MobileUrl { get; set; }
 
         /// <summary>
         /// 天气

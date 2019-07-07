@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Codeping.Utils
+namespace Codeping.Utils.Nmc
 {
-    /// <summary>
-    /// 返回类型
-    /// </summary>
-    public class NmcModel
+    public class AlarmModel
     {
         /// <summary>
         /// 抓取标记

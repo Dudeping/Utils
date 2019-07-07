@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace Codeping.Utils
+namespace Codeping.Utils.Nmc
 {
     /// <summary>
     /// 城市天气
     /// </summary>
-    public class Forecast
+    public class CityForecast
     {
         /// <summary>
         /// 标题
