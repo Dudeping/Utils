@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,7 +11,7 @@ namespace Codeping.Utils.Nmc
     /// <summary>
     /// 系统扩展 - 获取天气
     /// </summary>
-    public static partial class Ext
+    public static class NmcExtensions
     {
         /// <summary>
         /// 获取天气预报
@@ -100,8 +99,8 @@ namespace Codeping.Utils.Nmc
                         CName = cname,
                         Weather = weather,
                         Temp = temp,
-                        Url = Ext.GetDomain(false) + url,
-                        MobileUrl = Ext.GetDomain(true) + url,
+                        Url = NmcExtensions.GetDomain(false) + url,
+                        MobileUrl = NmcExtensions.GetDomain(true) + url,
                     });
                 }
 
@@ -118,10 +117,10 @@ namespace Codeping.Utils.Nmc
         /// </summary>
         /// <param name="client">客户端</param>
         /// <returns></returns>
-        public static async Task<Result<IAsyncEnumerable<AlarmModel>>> RequestAlarmAsync(
-            [NotNull]this HttpClient client, AlarmType type, AlarmLevel level, AlarmArea area, bool isMobile = true)
+        public static async Task<Result<AlarmResult>> RequestAlarmAsync(
+            [NotNull]this HttpClient client, AlarmType type, AlarmLevel level, AlarmArea area, int page = 1, bool isMobile = true)
         {
-            var result = new Result<IAsyncEnumerable<AlarmModel>>();
+            var result = new Result<AlarmResult>();
 
             try
             {
@@ -129,7 +128,7 @@ namespace Codeping.Utils.Nmc
                 var signallevel = level == AlarmLevel.全部等级 ? "" : HttpUtility.UrlEncode(level.ToString(), Encoding.UTF8);
                 var province = area == AlarmArea.全部区域 ? "" : HttpUtility.UrlEncode(area.ToString(), Encoding.UTF8);
 
-                string text = $"pageNo=1&pageSize=30&signaltype={signaltype}&signallevel={signallevel}&province={province}";
+                string text = $"pageNo={page}&pageSize=30&signaltype={signaltype}&signallevel={signallevel}&province={province}";
 
                 var content = new StringContent(text, Encoding.UTF8, "application/x-www-form-urlencoded");
 
@@ -141,9 +140,13 @@ namespace Codeping.Utils.Nmc
 
                 MatchCollection evens = Regex.Matches(html, "<div class=\"(?:even|odd)\">(.*?)</div>", RegexOptions.Singleline);
 
-                var items = Ext.HandeAlarmAsync(client, evens, isMobile);
+                var items = NmcExtensions.HandeAlarmAsync(client, evens, isMobile);
 
-                return result.Ok(items);
+                var total = Regex.Match(html, "条，共 (\\d*) 条").Groups[1].Value;
+
+                var model = new AlarmResult { Items = items, Total = int.Parse(total) };
+
+                return result.Ok(model);
             }
             catch (Exception ex)
             {
@@ -169,7 +172,7 @@ namespace Codeping.Utils.Nmc
                     continue;
                 }
 
-                url = Ext.GetDomain(isMobile) + url;
+                url = NmcExtensions.GetDomain(isMobile) + url;
 
                 var page = await client.GetStringAsync(url);
 
@@ -191,7 +194,7 @@ namespace Codeping.Utils.Nmc
                     date = date.Remove(index);
                 }
 
-                DateTime odate = DateTime.Parse(date);
+                var odate = DateTime.Parse(date);
 
                 if (odate.Date != DateTime.Now.Date)
                 {
