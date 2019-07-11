@@ -18,6 +18,7 @@ namespace Codeping.Utils.Nmc
         /// 通过标签标识预报的唯一性
         /// </summary>
         /// <param name="client">客户端</param>
+        /// <param name="type">天气预报类型</param>
         /// <param name="isMobile">是否返回移动端链接</param>
         /// <returns></returns>
         public static async Task<Result<ForecastModel>> RequestForecastAsync(
@@ -116,9 +117,19 @@ namespace Codeping.Utils.Nmc
         /// 获取当日预警信息
         /// </summary>
         /// <param name="client">客户端</param>
+        /// <param name="type">预警类型</param>
+        /// <param name="level">预警级别</param>
+        /// <param name="area">预警区域</param>
+        /// <param name="page">页面</param>
+        /// <param name="isMobile">是否返回移动端链接</param>
         /// <returns></returns>
         public static async Task<Result<AlarmResult>> RequestAlarmAsync(
-            [NotNull]this HttpClient client, AlarmType type, AlarmLevel level, AlarmArea area, int page = 1, bool isMobile = true)
+            [NotNull]this HttpClient client,
+            AlarmType type = AlarmType.全部类型,
+            AlarmLevel level = AlarmLevel.全部等级,
+            AlarmArea area = AlarmArea.全部区域,
+            int page = 1,
+            bool isMobile = true)
         {
             var result = new Result<AlarmResult>();
 
