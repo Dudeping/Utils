@@ -124,7 +124,7 @@ namespace Codeping.Utils
                 relativePath.Append(relativeDirectories[index] + "\\");
             }
 
-            relativePath.Append(relativeDirectories[^1]);
+            relativePath.Append(relativeDirectories[relativeDirectories.Length - 1]);
 
             return relativePath.ToString();
         }

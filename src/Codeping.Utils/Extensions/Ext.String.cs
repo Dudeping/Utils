@@ -37,7 +37,7 @@ namespace Codeping.Utils
         /// <param name="separator">修正后的分隔符</param>
         /// <param name="oldSeparator">修正前的分隔符</param>
         /// <returns></returns>
-        public static string CorrectSplitChar(this string str, char separator, params char[] oldSeparator)
+        public static string CorrectSplitChar(this string str, string separator, params char[] oldSeparator)
         {
             var attrs = str.SplitWhitoutEmpty(oldSeparator);
 
@@ -51,7 +51,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static string CorrectQuotes(this string str)
         {
-            return str.CorrectSplitChar(';', new[] { ';', '；' });
+            return str.CorrectSplitChar(";", new[] { ';', '；' });
         }
 
         /// <summary>

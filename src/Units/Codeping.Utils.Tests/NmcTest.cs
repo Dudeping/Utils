@@ -82,8 +82,6 @@ namespace Codeping.Utils.Tests
             var result = await _client.RequestAlarmAsync();
 
             Assert.True(result.Succeeded);
-
-            Assert.True(result.Value.Total > 0);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Codeping.Utils.Nmc
 
                 MatchCollection numbers = Regex.Matches(text, @"<b>(\d*)</b>");
 
-                string datetime = numbers.ToList(x => x.Groups?[1]?.Value ?? string.Empty).Join("/");
+                string datetime = numbers.ToList<Match, string>(x => x.Groups?[1]?.Value ?? string.Empty).Join("/");
 
                 var model = new ForecastModel()
                 {
@@ -123,7 +123,7 @@ namespace Codeping.Utils.Nmc
         /// <param name="page">页面</param>
         /// <param name="isMobile">是否返回移动端链接</param>
         /// <returns></returns>
-        public static async Task<Result<AlarmResult>> RequestAlarmAsync(
+        public static async Task<Result<IEnumerable<AlarmModel>>> RequestAlarmAsync(
             [NotNull]this HttpClient client,
             AlarmType type = AlarmType.全部类型,
             AlarmLevel level = AlarmLevel.全部等级,
@@ -131,7 +131,7 @@ namespace Codeping.Utils.Nmc
             int page = 1,
             bool isMobile = true)
         {
-            var result = new Result<AlarmResult>();
+            var result = new Result<IEnumerable<AlarmModel>>();
 
             try
             {
@@ -153,11 +153,7 @@ namespace Codeping.Utils.Nmc
 
                 var items = NmcExtensions.HandeAlarmAsync(client, evens, isMobile);
 
-                var total = Regex.Match(html, "条，共 (\\d*) 条").Groups[1].Value;
-
-                var model = new AlarmResult { Items = items, Total = int.Parse(total) };
-
-                return result.Ok(model);
+                return result.Ok(items);
             }
             catch (Exception ex)
             {
@@ -165,7 +161,7 @@ namespace Codeping.Utils.Nmc
             }
         }
 
-        private static async IAsyncEnumerable<AlarmModel> HandeAlarmAsync(HttpClient client, MatchCollection matches, bool isMobile = true)
+        private static IEnumerable<AlarmModel> HandeAlarmAsync(HttpClient client, MatchCollection matches, bool isMobile = true)
         {
             foreach (Match odd in matches)
             {
@@ -185,7 +181,7 @@ namespace Codeping.Utils.Nmc
 
                 url = NmcExtensions.GetDomain(isMobile) + url;
 
-                var page = await client.GetStringAsync(url);
+                var page = client.GetStringAsync(url).Result;
 
                 if (page.Contains("很抱歉，您要访问的页面地址已经失效或者页面不存在."))
                 {

@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.ConsoleEx.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.Logging", "Codeping.Utils.Logging\Codeping.Utils.Logging.csproj", "{18D38DF0-F49A-4903-B247-C5C40B5AFC52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Utils.Nmc", "Codeping.Utils.Nmc\Codeping.Utils.Nmc.csproj", "{54E1B6B7-6E57-4845-A089-F06D2AF579ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils.Nmc", "Codeping.Utils.Nmc\Codeping.Utils.Nmc.csproj", "{54E1B6B7-6E57-4845-A089-F06D2AF579ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_deps", "_deps", "{A1AA6C74-D266-428E-ADBE-684A9CCB578F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.TimedJob.Core", "Codeping.TimedJob\Codeping.TimedJob.Core\Codeping.TimedJob.Core.csproj", "{D34927A8-3C5E-4B3F-8745-7CAD1A68884C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,10 @@ Global
 		{54E1B6B7-6E57-4845-A089-F06D2AF579ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54E1B6B7-6E57-4845-A089-F06D2AF579ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54E1B6B7-6E57-4845-A089-F06D2AF579ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D34927A8-3C5E-4B3F-8745-7CAD1A68884C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D34927A8-3C5E-4B3F-8745-7CAD1A68884C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D34927A8-3C5E-4B3F-8745-7CAD1A68884C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D34927A8-3C5E-4B3F-8745-7CAD1A68884C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +81,7 @@ Global
 		{35A350B6-2360-4FB3-B6E0-E91BBF914B46} = {6B12443B-F3B7-48F6-98CF-EC496B68E866}
 		{A6B8857B-E2E4-4F26-9451-E5AB709EB57A} = {6B12443B-F3B7-48F6-98CF-EC496B68E866}
 		{7DC60263-9349-4979-B708-1E26695291D6} = {6B12443B-F3B7-48F6-98CF-EC496B68E866}
+		{D34927A8-3C5E-4B3F-8745-7CAD1A68884C} = {A1AA6C74-D266-428E-ADBE-684A9CCB578F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {03B68A18-69DF-48F2-A48B-C84747BE7367}
