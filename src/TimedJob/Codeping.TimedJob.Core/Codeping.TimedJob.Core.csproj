@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>codeping</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>TimedJob</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils.TimedJob</PackageProjectUrl>
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Version>0.0.1-alpha</Version>
+    <Description>该项目用于快速开发简单的 asp.net core 的后台定时任务。</Description>
+    <PackageReleaseNotes>初版发布, 功能可用.</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/TimedJob.ico</PackageIconUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview6-27804-01" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0-preview6.19304.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utils\Codeping.Utils\Codeping.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

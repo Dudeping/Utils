@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.3-alpha</Version>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/Utils.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>utils mvc</PackageTags>
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Description>该项目封装了大量 asp.net core mvc 框架下需要用到的基础代码。</Description>
+    <Authors>codeping</Authors>
+    <Company>codeping</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReleaseNotes>添加嵌入静态资源提供程序配置基类。</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview5.19227.1" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Composite" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.0.0-preview6.19304.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utils\Codeping.Utils\Codeping.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

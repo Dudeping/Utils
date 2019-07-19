@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>codeping</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Description>该项目包含了 codeping.utils 下所有包，用于减少包引用数量。</Description>
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/Utils.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>utils</PackageTags>
+    <PackageReleaseNotes>项版本更新。</PackageReleaseNotes>
+    <Version>0.0.1-alpha</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Agile\Codeping.Agile.Excel\Codeping.Utils.Excel.csproj" />
+    <ProjectReference Include="..\..\Agile\Codeping.Agile.Json\Codeping.Utils.Json.csproj" />
+    <ProjectReference Include="..\..\Agile\Codeping.Agile.Xml\Codeping.Utils.Xml.csproj" />
+    <ProjectReference Include="..\..\Console\Codeping.Clrex\Codeping.Clrex.csproj" />
+    <ProjectReference Include="..\..\Constants\Codeping.Constants\Codeping.Constants.csproj" />
+    <ProjectReference Include="..\..\Mvc\Codeping.Mvc\Codeping.Mvc.csproj" />
+    <ProjectReference Include="..\..\Nmc\Codeping.Nmc\Codeping.Nmc.csproj" />
+    <ProjectReference Include="..\..\Silly\Codeping.Silly\Codeping.Silly.csproj" />
+    <ProjectReference Include="..\..\TimedJob\Codeping.TimedJob.Core\Codeping.TimedJob.Core.csproj" />
+    <ProjectReference Include="..\..\Utils\Codeping.Utils\Codeping.Utils.csproj" />
+    <ProjectReference Include="..\..\WeChat\Codeping.WeChat.Core\Codeping.WeChat.Core.csproj" />
+    <ProjectReference Include="..\..\WeChat\Codeping.WeChat.Menu\Codeping.WeChat.Menu.csproj" />
+    <ProjectReference Include="..\..\WeChat\Codeping.WeChat.Reply\Codeping.WeChat.Reply.csproj" />
+  </ItemGroup>
+
+</Project>

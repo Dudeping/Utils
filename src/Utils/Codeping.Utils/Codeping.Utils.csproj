@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.0.2-alpha</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>codeping</Authors>
+    <Company />
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/Utils.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>utils</PackageTags>
+    <Description>该项目封装了大量 dotnet 开发需要用到的基础代码，涵盖类型转换、文件操作、网络、安全、解压缩等等。</Description>
+    <PackageReleaseNotes>修复 Web 返回扩展中的换行处理。</PackageReleaseNotes>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commons\**" />
+    <Compile Remove="Encryptors\**" />
+    <Compile Remove="Expressions\**" />
+    <Compile Remove="Helpers\ConsoleEx\bin\**" />
+    <Compile Remove="Helpers\ConsoleEx\obj\**" />
+    <EmbeddedResource Remove="Commons\**" />
+    <EmbeddedResource Remove="Encryptors\**" />
+    <EmbeddedResource Remove="Expressions\**" />
+    <EmbeddedResource Remove="Helpers\ConsoleEx\bin\**" />
+    <EmbeddedResource Remove="Helpers\ConsoleEx\obj\**" />
+    <None Remove="Commons\**" />
+    <None Remove="Encryptors\**" />
+    <None Remove="Expressions\**" />
+    <None Remove="Helpers\ConsoleEx\bin\**" />
+    <None Remove="Helpers\ConsoleEx\obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Encryptors\Encrypt.Md5.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspectCore.Core" Version="1.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview6-27804-01" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0-preview6.19303.8" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.6.0-preview6.19303.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
