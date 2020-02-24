@@ -1,4 +1,4 @@
-﻿namespace Codeping.Utils.Nmc
+﻿namespace Codeping.Nmc
 {
     public enum AlarmArea
     {

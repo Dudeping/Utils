@@ -1,4 +1,4 @@
-﻿namespace Codeping.Utils.Nmc
+﻿namespace Codeping.Nmc
 {
     /// <summary>
     /// 城市天气内容项

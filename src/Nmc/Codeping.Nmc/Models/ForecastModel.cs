@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Codeping.Utils.Nmc
+namespace Codeping.Nmc
 {
     /// <summary>
     /// 返回类型

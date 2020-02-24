@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Codeping.Utils.Nmc
+namespace Codeping.Nmc
 {
     public class AlarmModel
     {

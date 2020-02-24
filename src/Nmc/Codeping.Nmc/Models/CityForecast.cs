@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Codeping.Utils.Nmc
+namespace Codeping.Nmc
 {
     /// <summary>
     /// 城市天气

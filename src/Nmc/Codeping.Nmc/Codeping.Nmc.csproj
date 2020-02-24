@@ -1,27 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>codeping.pfx</AssemblyOriginatorKeyFile>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.0.1-alpha</Version>
+    <Version>0.0.1</Version>
     <Authors>codeping</Authors>
-    <Copyright>Copyright © 2019</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Codeping.Utils</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/Dudeping/Utils/master/docs/icons/Utils.ico</PackageIconUrl>
+    <Copyright>Copyright © 2020</Copyright>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Dudeping/Utils/tree/master/src/Nmc/Codeping.Nmc</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Dudeping/Utils.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>utils</PackageTags>
-    <PackageReleaseNotes>完成基本接口</PackageReleaseNotes>
-    <Description>提供对 HttpClient 的扩展以方便得获取 Nmc 的天气数据，已支持天气预报、天气预警以及城市天气预报的获取。</Description>
+    <PackageTags>utils nmc</PackageTags>
+    <PackageReleaseNotes>完成基本接口。</PackageReleaseNotes>
+    <Description>以 HttpClient 为基础，封装获取 Nmc 的天气数据，已支持天气预报、天气预警以及城市天气预报的获取。</Description>
+    <PackageIcon>nmc.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\LICENSE">
+    <None Include="..\..\..\docs\icons\nmc.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
