@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Nmc", "Codeping.Nmc\Codeping.Nmc.csproj", "{D03DAABE-8B83-4877-9478-2F329910B44B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Nmc.Test", "Codeping.Nmc.Test\Codeping.Nmc.Test.csproj", "{AFEB539A-9F9A-4B17-B39A-80AF79153FE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Nmc.Test", "Codeping.Nmc.Test\Codeping.Nmc.Test.csproj", "{AFEB539A-9F9A-4B17-B39A-80AF79153FE9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_dependencies", "_dependencies", "{EC98B3F0-88D4-40D2-907D-7031D8871E73}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codeping.Utils", "..\Utils\Codeping.Utils\Codeping.Utils.csproj", "{74C3DBF8-DBDF-4A29-B68C-4EF7EF6A2C9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codeping.Nmc.AspNetCore", "Codeping.Nmc.AspNetCore\Codeping.Nmc.AspNetCore.csproj", "{F6DDFC76-35E4-4DC0-A20F-A88686221B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{74C3DBF8-DBDF-4A29-B68C-4EF7EF6A2C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C3DBF8-DBDF-4A29-B68C-4EF7EF6A2C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C3DBF8-DBDF-4A29-B68C-4EF7EF6A2C9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6DDFC76-35E4-4DC0-A20F-A88686221B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6DDFC76-35E4-4DC0-A20F-A88686221B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6DDFC76-35E4-4DC0-A20F-A88686221B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6DDFC76-35E4-4DC0-A20F-A88686221B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

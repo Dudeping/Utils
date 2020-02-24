@@ -1,16 +1,23 @@
 ﻿using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Codeping.Nmc.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Codeping.Nmc.Test
 {
-    public class NmcTest
+    public class NmcTest_AspNetCore
     {
         private readonly NmcClient _client;
 
-        public NmcTest()
+        public NmcTest_AspNetCore()
         {
-            _client = NmcClient.Create();
+            _client = new ServiceCollection()
+                .AddNmc()
+                .BuildServiceProvider()
+                .GetService<IHttpClientFactory>()
+                .GetNmcClient();
         }
 
         [Theory]
