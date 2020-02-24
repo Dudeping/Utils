@@ -20,7 +20,7 @@ namespace Codeping.Utils
             if (stream == null ||
                 !stream.CanRead)
             {
-                return string.Empty;
+                return System.String.Empty;
             }
 
             if (encoding == null)
@@ -28,13 +28,13 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using StreamReader sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream);
+            using var sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream);
             if (stream.CanSeek)
             {
                 stream.Seek(0, SeekOrigin.Begin);
             }
 
-            string result = sr.ReadToEnd();
+            var result = sr.ReadToEnd();
 
             if (stream.CanSeek)
             {
@@ -57,7 +57,7 @@ namespace Codeping.Utils
             if (stream == null ||
                 !stream.CanRead)
             {
-                return string.Empty;
+                return System.String.Empty;
             }
 
             if (encoding == null)
@@ -65,13 +65,13 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using StreamReader sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream);
+            using var sr = new StreamReader(stream, encoding, true, bufferSize, !isCloseStream);
             if (stream.CanSeek)
             {
                 stream.Seek(0, SeekOrigin.Begin);
             }
 
-            string result = await sr.ReadToEndAsync();
+            var result = await sr.ReadToEndAsync();
 
             if (stream.CanSeek)
             {
@@ -92,7 +92,7 @@ namespace Codeping.Utils
             if (stream == null ||
                 !stream.CanRead)
             {
-                return string.Empty;
+                return System.String.Empty;
             }
 
             if (encoding == null)
@@ -100,8 +100,8 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using MemoryStream ms = new MemoryStream();
-            using StreamReader sr = new StreamReader(ms, encoding, !isCloseStream);
+            using var ms = new MemoryStream();
+            using var sr = new StreamReader(ms, encoding, !isCloseStream);
             if (stream.CanSeek)
             {
                 stream.Seek(0, SeekOrigin.Begin);
@@ -114,7 +114,7 @@ namespace Codeping.Utils
                 ms.Seek(0, SeekOrigin.Begin);
             }
 
-            string result = sr.ReadToEnd();
+            var result = sr.ReadToEnd();
 
             if (stream.CanSeek)
             {
@@ -135,7 +135,7 @@ namespace Codeping.Utils
             if (stream == null ||
                 !stream.CanRead)
             {
-                return string.Empty;
+                return System.String.Empty;
             }
 
             if (encoding == null)
@@ -143,8 +143,8 @@ namespace Codeping.Utils
                 encoding = Encoding.UTF8;
             }
 
-            using MemoryStream ms = new MemoryStream();
-            using StreamReader sr = new StreamReader(ms, encoding, !isCloseStream);
+            using var ms = new MemoryStream();
+            using var sr = new StreamReader(ms, encoding, !isCloseStream);
             if (stream.CanSeek)
             {
                 stream.Seek(0, SeekOrigin.Begin);
@@ -157,7 +157,7 @@ namespace Codeping.Utils
                 ms.Seek(0, SeekOrigin.Begin);
             }
 
-            string result = await sr.ReadToEndAsync();
+            var result = await sr.ReadToEndAsync();
 
             if (stream.CanSeek)
             {

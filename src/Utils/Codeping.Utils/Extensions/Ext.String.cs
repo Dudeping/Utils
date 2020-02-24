@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Codeping.Utils
@@ -17,7 +16,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static string[] SplitWhitoutEmpty(this string str, params char[] separator)
         {
-            if (string.IsNullOrWhiteSpace(str))
+            if (String.IsNullOrWhiteSpace(str))
             {
                 return new string[0];
             }
@@ -41,7 +40,7 @@ namespace Codeping.Utils
         {
             var attrs = str.SplitWhitoutEmpty(oldSeparator);
 
-            return string.Join(separator, attrs);
+            return String.Join(separator, attrs);
         }
 
         /// <summary>
@@ -62,11 +61,11 @@ namespace Codeping.Utils
         {
             if (chineseText.IsEmpty())
             {
-                return string.Empty;
+                return String.Empty;
             }
 
-            StringBuilder result = new StringBuilder();
-            foreach (char text in chineseText)
+            var result = new StringBuilder();
+            foreach (var text in chineseText)
             {
                 result.AppendFormat("{0}", text.ResolvePinYin());
             }
@@ -82,7 +81,7 @@ namespace Codeping.Utils
         {
             if (value.IsEmpty())
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             return $"{value.Substring(0, 1).ToLower()}{value.Substring(1)}";
@@ -96,7 +95,7 @@ namespace Codeping.Utils
         {
             if (value.IsEmpty())
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             return $"{value.Substring(0, 1).ToUpper()}{value.Substring(1)}";
@@ -111,7 +110,7 @@ namespace Codeping.Utils
         {
             if (value.IsEmpty())
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             if (removeValue.IsEmpty())
@@ -134,14 +133,14 @@ namespace Codeping.Utils
         {
             var txt = text.SafeString();
 
-            byte[] charBytes = Encoding.UTF8.GetBytes(txt);
+            var charBytes = Encoding.UTF8.GetBytes(txt);
             if (charBytes[0] <= 127)
             {
                 return txt;
             }
 
-            ushort unicode = (ushort)((charBytes[0] * 256) + charBytes[1]);
-            string pinYin = unicode.ResolveByCode();
+            var unicode = (ushort)((charBytes[0] * 256) + charBytes[1]);
+            var pinYin = unicode.ResolveByCode();
             if (!pinYin.IsEmpty())
             {
                 return pinYin;
@@ -270,7 +269,7 @@ namespace Codeping.Utils
                 return "Z";
             }
 
-            return string.Empty;
+            return String.Empty;
         }
 
         /// <summary>
@@ -278,10 +277,10 @@ namespace Codeping.Utils
         /// </summary>
         private static string ResolveByConst(this string text)
         {
-            int index = Const.ChinesePinYin.IndexOf(text, StringComparison.Ordinal);
+            var index = Const.ChinesePinYin.IndexOf(text, StringComparison.Ordinal);
             if (index < 0)
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             return Const.ChinesePinYin.Substring(index + 1, 1);

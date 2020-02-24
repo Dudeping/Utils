@@ -1,5 +1,4 @@
 ﻿using Codeping.TimedJob.Core;
-using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

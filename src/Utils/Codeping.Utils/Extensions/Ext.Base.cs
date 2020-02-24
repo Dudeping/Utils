@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Codeping.Utils
 {
@@ -21,7 +19,7 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static string SafeString(this object input)
         {
-            return input?.ToString().Trim() ?? string.Empty;
+            return input?.ToString().Trim() ?? String.Empty;
         }
 
         /// <summary>
@@ -41,8 +39,8 @@ namespace Codeping.Utils
                 return default;
             }
 
-            Type type = TypeEx.GetType<T>();
-            string typeName = type.Name.ToLower();
+            var type = TypeEx.GetType<T>();
+            var typeName = type.Name.ToLower();
 
             try
             {
@@ -87,7 +85,7 @@ namespace Codeping.Utils
                 return default;
             }
 
-            string typeName = type.Name.ToLower();
+            var typeName = type.Name.ToLower();
 
             try
             {

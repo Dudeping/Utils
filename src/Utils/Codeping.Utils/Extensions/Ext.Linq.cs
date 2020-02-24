@@ -23,14 +23,14 @@ namespace Codeping.Utils
                 return Enumerable.Empty<T>();
             }
 
-            List<T> list = source.ToList();
+            var list = source.ToList();
 
-            for (int i = 0; i < list.Count; i++)
+            for (var i = 0; i < list.Count; i++)
             {
-                int index1 = RandomEx.GenerateInt(list.Count - 1);
-                int index2 = RandomEx.GenerateInt(list.Count - 1);
+                var index1 = RandomEx.GenerateInt(list.Count - 1);
+                var index2 = RandomEx.GenerateInt(list.Count - 1);
 
-                T temp = list[index1];
+                var temp = list[index1];
                 list[index1] = list[index2];
                 list[index2] = temp;
             }
@@ -49,12 +49,12 @@ namespace Codeping.Utils
         {
             if (list == null)
             {
-                return string.Empty;
+                return String.Empty;
             }
 
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
 
-            foreach (T each in list)
+            foreach (var each in list)
             {
                 result.AppendFormat("{0}{1}{0}{2}", quotes, each, separator);
             }

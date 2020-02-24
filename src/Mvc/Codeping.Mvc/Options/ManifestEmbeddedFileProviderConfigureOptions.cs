@@ -37,9 +37,9 @@ namespace Codeping.Utils.Mvc
                 throw new InvalidOperationException("找不到文件提供程序!");
             }
 
-            options.ContentTypeProvider = options.ContentTypeProvider ?? new FileExtensionContentTypeProvider();
+            options.ContentTypeProvider ??= new FileExtensionContentTypeProvider();
 
-            options.FileProvider = options.FileProvider ?? _host.WebRootFileProvider;
+            options.FileProvider ??= _host.WebRootFileProvider;
 
             var fileProvider = new ManifestEmbeddedFileProvider(this.GetType().Assembly, this.Root);
 

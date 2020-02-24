@@ -1,13 +1,13 @@
-﻿using Codeping.Utils;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Codeping.Utils;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Codeping.TimedJob.Core
 {
@@ -37,18 +37,18 @@ namespace Codeping.TimedJob.Core
 
             var jobs = types.SelectMany(x => x.DeclaredMethods.Where(d => d.GetCustomAttribute<InvokeAttribute>() != null));
 
-            foreach (MethodInfo method in jobs)
+            foreach (var method in jobs)
             {
                 _status.Add(method.GetFullName(), false);
 
-                InvokeAttribute invoke = method.GetCustomAttribute<InvokeAttribute>();
+                var invoke = method.GetCustomAttribute<InvokeAttribute>();
 
                 if (invoke == null || !invoke.IsEnabled)
                 {
                     continue;
                 }
 
-                TimeSpan delay = invoke.Begin - DateTime.Now;
+                var delay = invoke.Begin - DateTime.Now;
 
                 delay = delay > TimeSpan.Zero ? delay : TimeSpan.Zero;
 
@@ -56,7 +56,7 @@ namespace Codeping.TimedJob.Core
 
                 await Task.Run(delegate
                 {
-                    Timer timer = new Timer(
+                    var timer = new Timer(
                      x => this.Process(method, invoke), null, delay, interval);
 
                     _timers.Add(timer);
@@ -73,7 +73,7 @@ namespace Codeping.TimedJob.Core
                 return;
             }
 
-            using IServiceScope scope = _services.CreateScope();
+            using var scope = _services.CreateScope();
             var logger = scope.ServiceProvider.GetService<ILogger<TimedJobService>>();
 
             var args = method.DeclaringType
@@ -99,6 +99,8 @@ namespace Codeping.TimedJob.Core
                 {
                     task.Wait();
                 }
+
+                logger?.LogInformation($"Invoked {identifier}");
             }
             catch (Exception ex)
             {

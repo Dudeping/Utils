@@ -31,7 +31,7 @@ namespace Codeping.Utils
         /// <param name="instance">枚举实例</param>
         public static string Description(this Enum instance)
         {
-            Type type = instance.Type();
+            var type = instance.Type();
 
             return type.GetDescription(EnumEx.GetName(type, instance));
         }

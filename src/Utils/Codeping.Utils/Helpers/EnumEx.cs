@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace Codeping.Utils
 {
@@ -14,20 +12,20 @@ namespace Codeping.Utils
         /// <typeparam name="TEnum">枚举类型</typeparam>
         public static IEnumerable<Item> GetItems<TEnum>() where TEnum : Enum
         {
-            Type type = TypeEx.GetType<TEnum>();
+            var type = TypeEx.GetType<TEnum>();
 
-            List<Item> result = new List<Item>();
+            var result = new List<Item>();
 
-            foreach (FieldInfo field in type.GetFields())
+            foreach (var field in type.GetFields())
             {
                 if (!field.FieldType.IsEnum)
                 {
                     continue;
                 }
 
-                int value = EnumEx.GetValue<TEnum>(field.Name);
+                var value = EnumEx.GetValue<TEnum>(field.Name);
 
-                string description = field.GetDescription();
+                var description = field.GetDescription();
 
                 result.Add(new Item(description, value, value));
             }
@@ -42,7 +40,7 @@ namespace Codeping.Utils
         /// <param name="member">成员名或值, 范例: Enum1 枚举有成员 A = 0, 则传入 "A" 或 "0" 获取 Enum1.A</param>
         public static TEnum Parse<TEnum>(object member) where TEnum : Enum
         {
-            string value = member.SafeString();
+            var value = member.SafeString();
 
             var type = TypeEx.GetType<TEnum>();
 
@@ -91,7 +89,7 @@ namespace Codeping.Utils
 
         internal static int GetValue(Type type, object member)
         {
-            string value = member.SafeString();
+            var value = member.SafeString();
 
             if (value.IsEmpty())
             {
@@ -105,7 +103,7 @@ namespace Codeping.Utils
         {
             if (type == null || member == null)
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             if (member is string)

@@ -1,11 +1,8 @@
-﻿using Microsoft.Extensions.DependencyModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.DependencyModel;
 
 namespace Codeping.Utils
 {
@@ -79,7 +76,7 @@ namespace Codeping.Utils
         {
             var result = new List<Type>();
 
-            foreach (Assembly assembly in assemblies)
+            foreach (var assembly in assemblies)
             {
                 result.AddRange(TypeEx.GetTypes(findType, assembly));
             }
@@ -156,7 +153,7 @@ namespace Codeping.Utils
 
             try
             {
-                foreach (Type type in assembly.GetTypes())
+                foreach (var type in assembly.GetTypes())
                 {
                     if (type.IsInterface || type.IsAbstract)
                     {
@@ -190,9 +187,9 @@ namespace Codeping.Utils
                 return false;
             }
 
-            Type definition = findType.GetGenericTypeDefinition();
+            var definition = findType.GetGenericTypeDefinition();
 
-            foreach (Type implementedInterface in type.FindInterfaces((f, c) => true, null))
+            foreach (var implementedInterface in type.FindInterfaces((f, c) => true, null))
             {
                 if (!implementedInterface.IsGenericType)
                 {

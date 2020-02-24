@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace Codeping.Utils.Mvc
 {
@@ -19,7 +19,7 @@ namespace Codeping.Utils.Mvc
         /// </summary>
         public static string GetIp(this HttpContext context)
         {
-            string result = context?.GetWebClientIp();
+            var result = context?.GetWebClientIp();
 
             return result.IsEmpty() ? GetLanIp() : result;
         }
@@ -33,29 +33,29 @@ namespace Codeping.Utils.Mvc
         /// <returns></returns>
         public static string SaveFileAs(this HttpRequest request, string name, string rootDir)
         {
-            IFormFile file = request.Form.Files.GetFile(name);
+            var file = request.Form.Files.GetFile(name);
 
             if (file == null)
             {
                 return "";
             }
 
-            string fileExt = Path.GetExtension(file.FileName);
+            var fileExt = Path.GetExtension(file.FileName);
 
-            string fileName = RandomEx.GenerateGuid() + fileExt;
+            var fileName = RandomEx.GenerateGuid() + fileExt;
 
-            string relativePath = "/upload/" + fileName;
+            var relativePath = "/upload/" + fileName;
 
-            string filePath = rootDir + relativePath;
+            var filePath = rootDir + relativePath;
 
-            string directory = Path.GetDirectoryName(filePath);
+            var directory = Path.GetDirectoryName(filePath);
 
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
 
-            using (FileStream stream = new FileStream(filePath, FileMode.OpenOrCreate))
+            using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 file.CopyTo(stream);
             }
@@ -68,9 +68,9 @@ namespace Codeping.Utils.Mvc
         /// </summary>
         private static string GetWebClientIp(this HttpContext context)
         {
-            string ip = context.GetWebRemoteIp();
+            var ip = context.GetWebRemoteIp();
 
-            foreach (IPAddress hostAddress in Dns.GetHostAddresses(ip))
+            foreach (var hostAddress in Dns.GetHostAddresses(ip))
             {
                 if (hostAddress.AddressFamily == AddressFamily.InterNetwork)
                 {
@@ -78,7 +78,7 @@ namespace Codeping.Utils.Mvc
                 }
             }
 
-            return string.Empty;
+            return String.Empty;
         }
 
         /// <summary>
@@ -86,14 +86,14 @@ namespace Codeping.Utils.Mvc
         /// </summary>
         private static string GetLanIp()
         {
-            foreach (IPAddress hostAddress in Dns.GetHostAddresses(Dns.GetHostName()))
+            foreach (var hostAddress in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (hostAddress.AddressFamily == AddressFamily.InterNetwork)
                 {
                     return hostAddress.ToString();
                 }
             }
-            return string.Empty;
+            return String.Empty;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Codeping.Utils.Mvc
         /// </summary>
         private static string GetWebRemoteIp(this HttpContext context)
         {
-            string ip = context.GetHeaderValueAs<string>("X-Forwarded-For").SplitCsv().FirstOrDefault();
+            var ip = context.GetHeaderValueAs<string>("X-Forwarded-For").SplitCsv().FirstOrDefault();
 
             if (ip.IsEmpty() && context?.Connection?.RemoteIpAddress != null)
             {
@@ -118,9 +118,9 @@ namespace Codeping.Utils.Mvc
 
         private static T GetHeaderValueAs<T>(this HttpContext context, string headerName)
         {
-            if (context?.Request?.Headers?.TryGetValue(headerName, out StringValues values) ?? false)
+            if (context?.Request?.Headers?.TryGetValue(headerName, out var values) ?? false)
             {
-                string rawValues = values.ToString();
+                var rawValues = values.ToString();
 
                 if (!rawValues.IsEmpty())
                 {

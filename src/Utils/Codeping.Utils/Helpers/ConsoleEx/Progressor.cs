@@ -15,7 +15,7 @@ namespace Codeping.Utils
         {
             _total = total;
             _style = this.HandleStyle(style);
-            _message = string.IsNullOrWhiteSpace(message) ? "..." : message;
+            _message = String.IsNullOrWhiteSpace(message) ? "..." : message;
 
             this.PrintStart();
         }
@@ -87,7 +87,7 @@ namespace Codeping.Utils
 
         private string HandleStyle(string style)
         {
-            if (string.IsNullOrWhiteSpace(style))
+            if (String.IsNullOrWhiteSpace(style))
             {
                 style = "#";
             }

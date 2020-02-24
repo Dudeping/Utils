@@ -25,7 +25,7 @@ namespace Codeping.Utils
         public static bool IsValidUserName(this string userName)
         {
             // 判断用户名的长度（4-20个字符）及内容（只能是汉字、字母、下划线、数字）是否合法
-            int userNameLength = GetStringLength(userName);
+            var userNameLength = GetStringLength(userName);
 
             return userNameLength >= 4 && userNameLength <= 20 && Regex.IsMatch(userName, @"^([\u4e00-\u9fa5A-Za-z_0-9]{0, })$");
         }
@@ -106,12 +106,12 @@ namespace Codeping.Utils
         /// <param name="str">字符串</param> 
         public static int GetCHZNLength(this string inputData)
         {
-            ASCIIEncoding n = new ASCIIEncoding();
+            var n = new ASCIIEncoding();
 
-            byte[] bytes = n.GetBytes(inputData);
+            var bytes = n.GetBytes(inputData);
 
-            int length = 0; // l 为字符串之实际长度 
-            for (int i = 0; i <= bytes.Length - 1; i++)
+            var length = 0; // l 为字符串之实际长度 
+            for (var i = 0; i <= bytes.Length - 1; i++)
             {
                 if (bytes[i] == 63) //判断是否为汉字或全脚符号 
                 {
@@ -129,7 +129,7 @@ namespace Codeping.Utils
         /// <param name="idCard">要验证的身份证</param>
         public static bool IsIdCard(this string idCard)
         {
-            if (string.IsNullOrEmpty(idCard))
+            if (System.String.IsNullOrEmpty(idCard))
             {
                 return false;
             }
@@ -225,7 +225,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static bool IsValidDomain(this string host)
         {
-            return host.IndexOf(".") == -1 ? false : !Regex.IsMatch(host.Replace(".", string.Empty), @"^\d+$");
+            return host.IndexOf(".") == -1 ? false : !Regex.IsMatch(host.Replace(".", System.String.Empty), @"^\d+$");
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static bool IsGuid(this string guid)
         {
-            return string.IsNullOrEmpty(guid) ? false : Regex.IsMatch(guid, "[A-F0-9]{8}(-[A-F0-9]{4}){3}-[A-F0-9]{12}|[A-F0-9]{32}", RegexOptions.IgnoreCase);
+            return System.String.IsNullOrEmpty(guid) ? false : Regex.IsMatch(guid, "[A-F0-9]{8}(-[A-F0-9]{4}){3}-[A-F0-9]{12}|[A-F0-9]{32}", RegexOptions.IgnoreCase);
         }
 
         /// <summary>
@@ -276,7 +276,7 @@ namespace Codeping.Utils
         /// <returns></returns>			
         public static string CheckMathLength(this string inputData, int maxLength)
         {
-            if (inputData != null && inputData != string.Empty)
+            if (inputData != null && inputData != System.String.Empty)
             {
                 inputData = inputData.Trim();
                 if (inputData.Length > maxLength)//按最大长度截取字符串

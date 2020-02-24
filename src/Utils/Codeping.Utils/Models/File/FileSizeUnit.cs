@@ -11,17 +11,17 @@ namespace Codeping.Utils
         /// 字节
         /// </summary>
         [Description("B")]
-        B, 
+        B,
         /// <summary>
         /// K字节
         /// </summary>
         [Description("KB")]
-        K, 
+        K,
         /// <summary>
         /// M字节
         /// </summary>
         [Description("MB")]
-        M, 
+        M,
         /// <summary>
         /// G字节
         /// </summary>

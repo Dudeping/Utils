@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Linq;
 
 namespace Codeping.Utils
 {
@@ -32,7 +30,7 @@ namespace Codeping.Utils
                 text = Const.Letters + Const.Letters.ToUpper() + Const.Numbers;
             }
 
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
 
             for (long i = 0; i < length; i++)
             {
@@ -74,7 +72,7 @@ namespace Codeping.Utils
         /// </summary>
         public static bool GenerateBool()
         {
-            int random = _rnd.Next(1, 100);
+            var random = _rnd.Next(1, 100);
 
             if (random % 2 == 0)
             {
@@ -110,12 +108,12 @@ namespace Codeping.Utils
         /// <param name="endYear">结束年份</param>
         public static DateTime GenerateDate(int beginYear = 1980, int endYear = 2080)
         {
-            int year = _rnd.Next(beginYear, endYear);
-            int month = _rnd.Next(1, 13);
-            int day = _rnd.Next(1, 29);
-            int hour = _rnd.Next(1, 24);
-            int minute = _rnd.Next(1, 60);
-            int second = _rnd.Next(1, 60);
+            var year = _rnd.Next(beginYear, endYear);
+            var month = _rnd.Next(1, 13);
+            var day = _rnd.Next(1, 29);
+            var hour = _rnd.Next(1, 24);
+            var minute = _rnd.Next(1, 60);
+            var second = _rnd.Next(1, 60);
 
             return new DateTime(year, month, day, hour, minute, second);
         }
@@ -126,9 +124,9 @@ namespace Codeping.Utils
         /// <typeparam name="TEnum">枚举类型</typeparam>
         public static TEnum GenerateEnum<TEnum>() where TEnum : Enum
         {
-            List<Item> items = EnumEx.GetItems<TEnum>().ToList<Item>();
+            var items = EnumEx.GetItems<TEnum>().ToList<Item>();
 
-            int index = _rnd.Next(0, items.Count);
+            var index = _rnd.Next(0, items.Count);
 
             return EnumEx.Parse<TEnum>(items[index].Value);
         }

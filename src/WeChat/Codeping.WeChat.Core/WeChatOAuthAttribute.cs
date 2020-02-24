@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -40,26 +40,28 @@ namespace Codeping.WeChat.Core
             var state = context.HttpContext.Request.Query["state"];
             var userAgent = context.HttpContext.Request.Headers["User-Agent"];
 
-            if (!userAgent.ToString().ToLower().Contains("micromessenger"))
+            if (!userAgent.ToString().Contains("micromessenger", StringComparison.OrdinalIgnoreCase))
             {
                 context.Result = new ContentResult()
                 {
                     Content = "不支持除微信浏览器以外的请求!",
                 };
+
                 return;
             }
 
-            if (!string.IsNullOrEmpty(code) && !string.IsNullOrEmpty(state))
+            if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state))
             {
                 var redirectUrl = context.HttpContext.Request.Cookies[COOKIE_NAME];
-                if (string.IsNullOrEmpty(redirectUrl))
+
+                if (String.IsNullOrWhiteSpace(redirectUrl))
                 {
                     return;
                 }
 
                 if (this.IsOnlyGetOpenId)
                 {
-                    Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthAccessTokenResult result = OAuthApi.GetAccessToken(_appId, _secret, code);
+                    var result = OAuthApi.GetAccessToken(_appId, _secret, code);
 
                     if (result.errcode != 0)
                     {
@@ -67,6 +69,7 @@ namespace Codeping.WeChat.Core
                             result.errcode == ReturnCode.form_id已被使用)
                         {
                             await this.CreateRedirectUrlAsync(context, context.HttpContext);
+
                             return;
                         }
 
@@ -89,6 +92,7 @@ namespace Codeping.WeChat.Core
                 }
 
                 context.HttpContext.Response.Cookies.Delete(COOKIE_NAME);
+
                 context.Result = new RedirectResult(redirectUrl);
             }
             else
@@ -102,7 +106,7 @@ namespace Codeping.WeChat.Core
             string state = httpContext.Request.Query["state"];
             string redirectUrl = httpContext.Request.Query["redirectUrl"];
 
-            if (string.IsNullOrWhiteSpace(redirectUrl))
+            if (String.IsNullOrWhiteSpace(redirectUrl))
             {
                 redirectUrl = httpContext.Request.GetDisplayUrl();
             }
@@ -110,7 +114,12 @@ namespace Codeping.WeChat.Core
             if (!redirectUrl.ToLower().Contains("openid="))
             {
                 httpContext.Response.Cookies.Append(COOKIE_NAME, redirectUrl);
-                var url = OAuthApi.GetAuthorizeUrl(_appId, redirectUrl, state ?? STATUS, OAuthScope.snsapi_base);
+
+                var url = OAuthApi.GetAuthorizeUrl(
+                    _appId,
+                    redirectUrl,
+                    state ?? STATUS,
+                    this.IsOnlyGetOpenId ? OAuthScope.snsapi_base : OAuthScope.snsapi_userinfo);
 
                 context.Result = new RedirectResult(url);
             }

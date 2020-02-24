@@ -28,7 +28,7 @@ namespace Codeping.Utils
                 return "{}";
             }
 
-            string result = JsonConvert.SerializeObject(target);
+            var result = JsonConvert.SerializeObject(target);
 
             if (isConvertToSingleQuotes)
             {

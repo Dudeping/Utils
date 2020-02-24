@@ -21,7 +21,7 @@ namespace Codeping.Utils
         /// <param name="contents">要写入文件的字符串。</param>
         public static void WriteHideFile(string path, string contents)
         {
-            string directory = Path.GetDirectoryName(path);
+            var directory = Path.GetDirectoryName(path);
 
             if (!Directory.Exists(directory))
             {
@@ -46,7 +46,7 @@ namespace Codeping.Utils
         /// <param name="encoding">要应用于字符串的编码。</param>
         public static void WriteHideFile(string path, string contents, Encoding encoding)
         {
-            string directory = Path.GetDirectoryName(path);
+            var directory = Path.GetDirectoryName(path);
 
             if (!Directory.Exists(directory))
             {
@@ -83,13 +83,13 @@ namespace Codeping.Utils
                 return fullPath;
             }
 
-            string[] absoluteDirectories = rootPath.Split('\\');
-            string[] relativeDirectories = fullPath.Split('\\');
+            var absoluteDirectories = rootPath.Split('\\');
+            var relativeDirectories = fullPath.Split('\\');
 
-            int length = absoluteDirectories.Length < relativeDirectories.Length
+            var length = absoluteDirectories.Length < relativeDirectories.Length
                 ? absoluteDirectories.Length : relativeDirectories.Length;
 
-            int lastCommonRoot = -1;
+            var lastCommonRoot = -1;
             int index;
 
             for (index = 0; index < length; index++)
@@ -109,7 +109,7 @@ namespace Codeping.Utils
                 return "";
             }
 
-            StringBuilder relativePath = new StringBuilder();
+            var relativePath = new StringBuilder();
 
             for (index = lastCommonRoot + 1; index < absoluteDirectories.Length; index++)
             {
@@ -124,7 +124,7 @@ namespace Codeping.Utils
                 relativePath.Append(relativeDirectories[index] + "\\");
             }
 
-            relativePath.Append(relativeDirectories[relativeDirectories.Length - 1]);
+            relativePath.Append(relativeDirectories[^1]);
 
             return relativePath.ToString();
         }
@@ -137,7 +137,7 @@ namespace Codeping.Utils
         /// <returns></returns>
         public static string GetAbsolutePath(string rootPath, string relativePath)
         {
-            string fullPath = Path.IsPathRooted(relativePath)
+            var fullPath = Path.IsPathRooted(relativePath)
                 ? relativePath : Path.Combine(rootPath, relativePath);
 
             if (fullPath.IsEmpty())

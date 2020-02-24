@@ -41,7 +41,7 @@ namespace Codeping.Utils
         /// <param name="other">其它列表项</param>
         public int CompareTo(Item other)
         {
-            return string.Compare(this.Text, other.Text, StringComparison.CurrentCulture);
+            return String.Compare(this.Text, other.Text, StringComparison.CurrentCulture);
         }
     }
 }

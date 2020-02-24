@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.DependencyModel;
 
 namespace Codeping.Utils
 {
@@ -193,7 +193,7 @@ namespace Codeping.Utils
                 return true;
             }
 
-            Type value = Nullable.GetUnderlyingType(property.PropertyType);
+            var value = Nullable.GetUnderlyingType(property.PropertyType);
             if (value == null)
             {
                 return false;
@@ -388,7 +388,7 @@ namespace Codeping.Utils
                 return false;
             }
 
-            Type typeDefinition = type.GetGenericTypeDefinition();
+            var typeDefinition = type.GetGenericTypeDefinition();
 
             return typeDefinition == typeof(IEnumerable<>)
                 || typeDefinition == typeof(IReadOnlyCollection<>)
@@ -452,7 +452,7 @@ namespace Codeping.Utils
             if (type == null ||
                 memberName.IsEmpty())
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             return type.GetTypeInfo().GetMember(memberName).FirstOrDefault().GetDescription();
@@ -466,7 +466,7 @@ namespace Codeping.Utils
         {
             if (member == null)
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             return member.GetCustomAttribute<DescriptionAttribute>()?.Description ?? member.Name;
@@ -479,7 +479,7 @@ namespace Codeping.Utils
         {
             if (member == null)
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             if (member.GetCustomAttribute<DisplayAttribute>() is DisplayAttribute displayAttribute)
@@ -492,7 +492,7 @@ namespace Codeping.Utils
                 return displayNameAttribute.DisplayName;
             }
 
-            return string.Empty;
+            return String.Empty;
         }
 
         /// <summary>
@@ -500,7 +500,7 @@ namespace Codeping.Utils
         /// </summary>
         public static string GetDisplayNameOrDescription(this MemberInfo member)
         {
-            string result = member.GetDisplayName();
+            var result = member.GetDisplayName();
 
             return result.IsEmpty() ? member.GetDescription() : result;
         }

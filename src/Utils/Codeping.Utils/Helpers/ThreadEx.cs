@@ -1,5 +1,4 @@
-﻿using AspectCore.DynamicProxy.Parameters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,9 +15,9 @@ namespace Codeping.Utils
         /// <param name="actions">操作集合</param>
         public static void WaitAll([NotNull]params Action[] actions)
         {
-            List<Task> tasks = new List<Task>();
+            var tasks = new List<Task>();
 
-            foreach (Action action in actions)
+            foreach (var action in actions)
             {
                 tasks.Add(Task.Factory.StartNew(action, TaskCreationOptions.None));
             }

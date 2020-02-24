@@ -20,7 +20,7 @@
         /// <param name="value">布尔值</param>
         public static string Description(this bool? value)
         {
-            return value == null ? string.Empty : value.Value.Description();
+            return value == null ? System.String.Empty : value.Value.Description();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@
         /// <param name="defaultValue">空值显示的默认文本</param>
         public static string Format(this decimal number, string defaultValue = "")
         {
-            return number == 0 ? defaultValue : string.Format("{0:0.##}", number);
+            return number == 0 ? defaultValue : System.String.Format("{0:0.##}", number);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@
         /// <param name="defaultValue">空值显示的默认文本</param>
         public static string Format(this double number, string defaultValue = "")
         {
-            return number == 0 ? defaultValue : string.Format("{0:0.##}", number);
+            return number == 0 ? defaultValue : System.String.Format("{0:0.##}", number);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@
         /// <param name="number">数值</param>
         public static string Rmb(this decimal number)
         {
-            return number == 0 ? "￥0" : string.Format("￥{0:0.##}", number);
+            return number == 0 ? "￥0" : System.String.Format("￥{0:0.##}", number);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@
         /// <param name="number">数值</param>
         public static string Percent(this decimal number)
         {
-            return number == 0 ? string.Empty : string.Format("{0:0.##}%", number);
+            return number == 0 ? System.String.Empty : System.String.Format("{0:0.##}%", number);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@
         /// <param name="number">数值</param>
         public static string Percent(this double number)
         {
-            return number == 0 ? string.Empty : string.Format("{0:0.##}%", number);
+            return number == 0 ? System.String.Empty : System.String.Format("{0:0.##}%", number);
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
-﻿using AspectCore.DynamicProxy.Parameters;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using AspectCore.DynamicProxy.Parameters;
 
 namespace Codeping.Utils
 {

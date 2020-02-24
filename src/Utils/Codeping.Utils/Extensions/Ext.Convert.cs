@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Codeping.Utils
@@ -25,14 +24,14 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static int? ToIntOrNull(this object input)
         {
-            if (int.TryParse(input.SafeString(), out int r))
+            if (Int32.TryParse(input.SafeString(), out var r))
             {
                 return r;
             }
 
             try
             {
-                double? temp = input.ToDoubleOrNull(0);
+                var temp = input.ToDoubleOrNull(0);
 
                 if (temp == null)
                 {
@@ -62,14 +61,14 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static long? ToLongOrNull(this object input)
         {
-            if (long.TryParse(input.SafeString(), out long r))
+            if (Int64.TryParse(input.SafeString(), out var r))
             {
                 return r;
             }
 
             try
             {
-                decimal? temp = input.ToDecimalOrNull(0);
+                var temp = input.ToDecimalOrNull(0);
 
                 if (temp == null)
                 {
@@ -101,7 +100,7 @@ namespace Codeping.Utils
         /// <param name="digits">小数位数</param>
         public static float? ToFloatOrNull(this object input, int? digits = null)
         {
-            if (float.TryParse(input.SafeString(), out float r))
+            if (Single.TryParse(input.SafeString(), out var r))
             {
                 if (digits != null)
                 {
@@ -133,7 +132,7 @@ namespace Codeping.Utils
         /// <param name="digits">小数位数</param>
         public static double? ToDoubleOrNull(this object input, int? digits = null)
         {
-            if (double.TryParse(input.SafeString(), out double r))
+            if (Double.TryParse(input.SafeString(), out var r))
             {
                 if (digits != null)
                 {
@@ -165,7 +164,7 @@ namespace Codeping.Utils
         /// <param name="digits">小数位数</param>
         public static decimal? ToDecimalOrNull(this object input, int? digits = null)
         {
-            if (decimal.TryParse(input.SafeString(), out decimal r))
+            if (Decimal.TryParse(input.SafeString(), out var r))
             {
                 if (digits != null)
                 {
@@ -195,14 +194,14 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static bool? ToBoolOrNull(this object input)
         {
-            bool? value = input.GetBool();
+            var value = input.GetBool();
 
             if (value != null)
             {
                 return value.Value;
             }
 
-            return bool.TryParse(input.SafeString(), out bool r) ? (bool?)r : null;
+            return Boolean.TryParse(input.SafeString(), out var r) ? (bool?)r : null;
         }
 
         /// <summary>
@@ -220,7 +219,7 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static DateTime? ToDateOrNull(this object input)
         {
-            return DateTime.TryParse(input.SafeString(), out DateTime r) ? (DateTime?)r : null;
+            return DateTime.TryParse(input.SafeString(), out var r) ? (DateTime?)r : null;
         }
 
         /// <summary>
@@ -238,7 +237,7 @@ namespace Codeping.Utils
         /// <param name="input">输入值</param>
         public static Guid? ToGuidOrNull(this object input)
         {
-            return Guid.TryParse(input.SafeString(), out Guid r) ? (Guid?)r : null;
+            return Guid.TryParse(input.SafeString(), out var r) ? (Guid?)r : null;
         }
 
         /// <summary>
@@ -266,7 +265,7 @@ namespace Codeping.Utils
         /// <param name="value">值</param>
         public static bool IsEmpty(this string value)
         {
-            return string.IsNullOrWhiteSpace(value);
+            return String.IsNullOrWhiteSpace(value);
         }
 
         /// <summary>

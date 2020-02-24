@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>codeping</Authors>
@@ -28,8 +28,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Senparc.CO2NET" Version="0.8.3" />
-    <PackageReference Include="Senparc.Weixin.MP.MVC" Version="7.2.14" />
+    <PackageReference Include="Senparc.Weixin.MP.MVC" Version="7.4.104" />
   </ItemGroup>
 
 </Project>

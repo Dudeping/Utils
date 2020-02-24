@@ -55,7 +55,7 @@ namespace Codeping.Utils
         {
             if (value.IsEmpty())
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             string result;
@@ -63,10 +63,10 @@ namespace Codeping.Utils
 
             try
             {
-                byte[] hash = md5.ComputeHash(encoding.GetBytes(value));
+                var hash = md5.ComputeHash(encoding.GetBytes(value));
 
-                result = length == null 
-                    ? BitConverter.ToString(hash, startIndex) 
+                result = length == null
+                    ? BitConverter.ToString(hash, startIndex)
                     : BitConverter.ToString(hash, startIndex, length.SafeValue());
             }
             finally
